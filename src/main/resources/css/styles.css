@@ -36,10 +36,398 @@
     -shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     -shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     -shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    
+    /* Цвета статистики */
+    -color-blue: #3B82F6;
+    -color-green: #10B981;
+    -color-red: #EF4444;
+    -color-purple: #8B5CF6;
+    -color-orange: #F59E0B;
+    -color-cyan: #06B6D4;
+    -color-pink: #EC4899;
+    -color-gray: #6B7280;
 }
 
 /* ========================================
-   КОРНЕВЫЕ КОНТЕЙНЕРЫ
+   DASHBOARD ROOT
+   ======================================== */
+
+.dashboard-root {
+    -fx-background-color: -bg-light;
+}
+
+/* ========================================
+   SIDEBAR
+   ======================================== */
+
+.sidebar {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 2, 0, 2, 0);
+}
+
+.sidebar-header {
+    -fx-border-color: -border-color;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+.sidebar-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ========================================
+   MENU ITEMS
+   ======================================== */
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 15px;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.menu-item:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+.menu-item-active {
+    -fx-background-color: #EFF6FF;
+}
+
+.menu-icon {
+    -fx-fill: -text-secondary;
+}
+
+.menu-item-active .menu-icon {
+    -fx-fill: -primary-color;
+}
+
+.menu-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+
+.menu-item-active .menu-label {
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: 600;
+}
+
+/* ========================================
+   SIDEBAR PROFILE
+   ======================================== */
+
+.sidebar-profile {
+    -fx-border-color: -border-color;
+    -fx-border-width: 1 0 0 0;
+    -fx-background-color: #FAFAFA;
+}
+
+.profile-avatar {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.profile-initials {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.profile-name {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.profile-email {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 11px;
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+
+.main-content {
+    -fx-background-color: -bg-light;
+}
+
+/* ========================================
+   TOP BAR
+   ======================================== */
+
+.top-bar {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.04), 2, 0, 0, 1);
+}
+
+.search-box {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 15px;
+    -fx-max-width: 400px;
+}
+
+.search-icon {
+    -fx-fill: -text-muted;
+}
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-muted;
+}
+
+.search-field:focused {
+    -fx-background-color: transparent;
+}
+
+.icon-button {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 12px;
+    -fx-cursor: hand;
+}
+
+.icon-button:hover {
+    -fx-background-color: -border-color;
+}
+
+.icon-button-icon {
+    -fx-fill: -text-secondary;
+}
+
+.notification-badge {
+    -fx-background-color: -color-red;
+    -fx-background-radius: 50%;
+    -fx-text-fill: white;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+    -fx-padding: 2px 5px;
+    -fx-translate-x: 8;
+    -fx-translate-y: -8;
+}
+
+/* ========================================
+   CONTENT SCROLL
+   ======================================== */
+
+.content-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.content-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.content-scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.content-scroll .scroll-bar .thumb {
+    -fx-background-color: derive(-text-muted, 40%);
+    -fx-background-radius: 4px;
+}
+
+/* ========================================
+   STAT CARDS
+   ======================================== */
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 4, 0, 0, 2);
+}
+
+.stat-icon {
+    -fx-background-radius: 10px;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 44px;
+}
+
+.stat-icon-blue {
+    -fx-background-color: -color-blue;
+}
+
+.stat-icon-green {
+    -fx-background-color: -color-green;
+}
+
+.stat-icon-red {
+    -fx-background-color: -color-red;
+}
+
+.stat-icon-purple {
+    -fx-background-color: -color-purple;
+}
+
+.stat-label {
+    -fx-text-fill: -text-secondary;
+    -fx-font-size: 13px;
+}
+
+.stat-value {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.stat-change {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.stat-positive {
+    -fx-text-fill: -color-green;
+}
+
+.stat-negative {
+    -fx-text-fill: -color-red;
+}
+
+/* ========================================
+   CHART CARDS
+   ======================================== */
+
+.chart-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 25px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 4, 0, 0, 2);
+}
+
+.chart-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+}
+
+/* ========================================
+   PIE CHART
+   ======================================== */
+
+.category-pie-chart {
+    -fx-background-color: transparent;
+}
+
+.category-pie-chart .chart-pie {
+    -fx-border-width: 0;
+}
+
+.category-pie-chart .chart-content {
+    -fx-padding: 10px;
+}
+
+/* Цвета секторов */
+.default-color0.chart-pie { -fx-pie-color: #3B82F6; }
+.default-color1.chart-pie { -fx-pie-color: #8B5CF6; }
+.default-color2.chart-pie { -fx-pie-color: #EC4899; }
+.default-color3.chart-pie { -fx-pie-color: #10B981; }
+.default-color4.chart-pie { -fx-pie-color: #F59E0B; }
+.default-color5.chart-pie { -fx-pie-color: #6B7280; }
+
+/* ========================================
+   CHART LEGEND
+   ======================================== */
+
+.chart-legend {
+    -fx-padding: 10px 0 0 0;
+}
+
+.legend-item {
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.legend-color {
+    -fx-pref-width: 12px;
+    -fx-pref-height: 12px;
+    -fx-background-radius: 3px;
+}
+
+.legend-label {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+}
+
+.legend-value {
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+/* ========================================
+   BAR CHART
+   ======================================== */
+
+.monthly-bar-chart {
+    -fx-background-color: transparent;
+}
+
+.monthly-bar-chart .chart-content {
+    -fx-padding: 10px;
+}
+
+.monthly-bar-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.monthly-bar-chart .chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.monthly-bar-chart .chart-horizontal-grid-lines {
+    -fx-stroke: -border-color;
+    -fx-stroke-dash-array: 5 5;
+}
+
+.monthly-bar-chart .axis {
+    -fx-tick-label-fill: -text-secondary;
+    -fx-font-size: 12px;
+}
+
+.monthly-bar-chart .axis-label {
+    -fx-text-fill: -text-secondary;
+}
+
+/* Цвета баров */
+.monthly-bar-chart .default-color0.chart-bar {
+    -fx-bar-fill: -color-green;
+}
+
+.monthly-bar-chart .default-color1.chart-bar {
+    -fx-bar-fill: -color-red;
+}
+
+.monthly-bar-chart .chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px 0 0 0;
+}
+
+.monthly-bar-chart .chart-legend-item {
+    -fx-text-fill: -text-primary;
+}
+
+.monthly-bar-chart .chart-legend-item-symbol {
+    -fx-background-radius: 3px;
+}
+
+/* ========================================
+   КОРНЕВЫЕ КОНТЕЙНЕРЫ (AUTH SCREENS)
    ======================================== */
 
 .root-pane {
@@ -54,7 +442,7 @@
 }
 
 /* ========================================
-   ИКОНКА И ЗАГОЛОВКИ ПРИЛОЖЕНИЯ
+   ИКОНКА И ЗАГОЛОВКИ ПРИЛОЖЕНИЯ (AUTH)
    ======================================== */
 
 .app-icon-container {
@@ -113,11 +501,6 @@
     -fx-border-color: -text-muted;
 }
 
-/* Password Field */
-.custom-text-field.password-field {
-    -fx-background-color: -bg-input;
-}
-
 /* ========================================
    КНОПКИ
    ======================================== */
@@ -126,9 +509,9 @@
     -fx-background-color: -primary-color;
     -fx-background-radius: 8px;
     -fx-text-fill: white;
-    -fx-font-size: 15px;
+    -fx-font-size: 14px;
     -fx-font-weight: 600;
-    -fx-padding: 12px 24px;
+    -fx-padding: 10px 20px;
     -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(59, 130, 246, 0.25), 4, 0, 0, 2);
 }
@@ -224,56 +607,4 @@
 .scroll-bar .decrement-button {
     -fx-background-color: transparent;
     -fx-padding: 0;
-}
-
-/* ========================================
-   АНИМАЦИИ И ПЕРЕХОДЫ
-   ======================================== */
-
-.custom-text-field,
-.primary-button,
-.link {
-    -fx-transition: all 0.2s ease;
-}
-
-/* ========================================
-   АДАПТИВНОСТЬ
-   ======================================== */
-
-@media (max-width: 768px) {
-    .auth-card {
-        -fx-padding: 30px 20px;
-    }
-    
-    .app-title {
-        -fx-font-size: 24px;
-    }
-}
-
-/* ========================================
-   УТИЛИТЫ
-   ======================================== */
-
-.mt-10 {
-    -fx-margin-top: 10px;
-}
-
-.mt-20 {
-    -fx-margin-top: 20px;
-}
-
-.mb-10 {
-    -fx-margin-bottom: 10px;
-}
-
-.text-center {
-    -fx-alignment: center;
-}
-
-.text-danger {
-    -fx-text-fill: #EF4444;
-}
-
-.text-success {
-    -fx-text-fill: #10B981;
 }
