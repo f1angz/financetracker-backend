@@ -253,7 +253,7 @@ public class DashboardController {
     @FXML
     private void handleOperationsClick() {
         setActiveMenuItem(operationsMenuItem);
-        showComingSoon("Operations");
+        SceneManager.switchScene("operations");
     }
     
     @FXML

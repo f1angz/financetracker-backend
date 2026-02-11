@@ -608,3 +608,216 @@
     -fx-background-color: transparent;
     -fx-padding: 0;
 }
+
+/* ========================================
+   OPERATIONS PAGE
+   ======================================== */
+
+.operations-content {
+    -fx-background-color: -bg-light;
+}
+
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ========================================
+   FILTER PANEL
+   ======================================== */
+
+.filter-panel {
+    -fx-background-color: white;
+    -fx-padding: 15px 20px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 3, 0, 0, 1);
+}
+
+.filter-search {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 12px;
+    -fx-min-width: 250px;
+}
+
+.filter-search-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-muted;
+    -fx-min-width: 200px;
+}
+
+.filter-search-field:focused {
+    -fx-background-color: transparent;
+}
+
+.filter-combo {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+}
+
+.filter-combo .list-cell {
+    -fx-background-color: transparent;
+}
+
+.filter-button {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 13px;
+}
+
+.filter-button:hover {
+    -fx-background-color: -border-color;
+}
+
+/* ========================================
+   TYPE INDICATORS
+   ======================================== */
+
+.type-indicator {
+    -fx-pref-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-background-radius: 50%;
+}
+
+.type-indicator-income {
+    -fx-background-color: -color-green;
+}
+
+.type-indicator-expense {
+    -fx-background-color: -color-red;
+}
+
+.type-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ========================================
+   TABLE CARD
+   ======================================== */
+
+.table-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 25px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 3, 0, 0, 1);
+}
+
+.table-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+/* ========================================
+   OPERATIONS TABLE
+   ======================================== */
+
+.operations-table {
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+}
+
+.operations-table .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.operations-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: -border-color;
+    -fx-padding: 12px 8px;
+}
+
+.operations-table .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-secondary;
+}
+
+.operations-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: -border-color;
+    -fx-padding: 12px 0;
+}
+
+.operations-table .table-row-cell:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.operations-table .table-row-cell:selected {
+    -fx-background-color: #EFF6FF;
+}
+
+.operations-table .table-cell {
+    -fx-padding: 8px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.operations-table .amount-column .table-cell {
+    -fx-alignment: CENTER_RIGHT;
+}
+
+/* Placeholder */
+.operations-table .empty-icon {
+    -fx-fill: -text-muted;
+}
+
+.operations-table .empty-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.operations-table .empty-subtext {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.pagination {
+    -fx-padding: 10px 0 0 0;
+}
+
+.pagination-button {
+    -fx-background-color: -bg-input;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-text-fill: -text-primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.pagination-button:hover {
+    -fx-background-color: -border-color;
+}
+
+.pagination-button:disabled {
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+.page-number {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+    -fx-font-weight: 500;
+}

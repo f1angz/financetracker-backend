@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.financetracker.controllers.OperationsController"
+           styleClass="dashboard-root">
+    
+    <!-- ========== SIDEBAR (переиспользуем из Dashboard) ========== -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
+            
+            <!-- Логотип и название -->
+            <VBox styleClass="sidebar-header" spacing="5" alignment="CENTER_LEFT">
+                <Label text="Finance Tracker" styleClass="sidebar-title"/>
+                <Label text="Личные финансы" styleClass="sidebar-subtitle"/>
+                <VBox.margin>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </VBox.margin>
+            </VBox>
+            
+            <!-- Меню навигации -->
+            <VBox styleClass="sidebar-menu" spacing="2" VBox.vgrow="ALWAYS">
+                
+                <Button fx:id="dashboardMenuItem" styleClass="menu-item" 
+                       onAction="#handleDashboardClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="DASHBOARD" size="16" styleClass="menu-icon"/>
+                            <Label text="Dashboard" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="operationsMenuItem" styleClass="menu-item, menu-item-active" 
+                       onAction="#handleOperationsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="EXCHANGE" size="16" styleClass="menu-icon"/>
+                            <Label text="Operations" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="categoriesMenuItem" styleClass="menu-item" 
+                       onAction="#handleCategoriesClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="FOLDER_OPEN" size="16" styleClass="menu-icon"/>
+                            <Label text="Categories" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="plansLimitsMenuItem" styleClass="menu-item" 
+                       onAction="#handlePlansLimitsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="LINE_CHART" size="16" styleClass="menu-icon"/>
+                            <Label text="Plans&amp;Limits" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="goalsDebtsMenuItem" styleClass="menu-item" 
+                       onAction="#handleGoalsDebtsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="TARGET" size="16" styleClass="menu-icon"/>
+                            <Label text="Goals &amp; Debts" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="settingsMenuItem" styleClass="menu-item" 
+                       onAction="#handleSettingsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="COG" size="16" styleClass="menu-icon"/>
+                            <Label text="Settings" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <VBox.margin>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </VBox.margin>
+            </VBox>
+            
+            <!-- Профиль пользователя -->
+            <HBox styleClass="sidebar-profile" spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="profile-avatar">
+                    <Label text="ИП" styleClass="profile-initials"/>
+                </StackPane>
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label fx:id="userNameLabel" text="Иван Петров" styleClass="profile-name"/>
+                    <Label fx:id="userEmailLabel" text="ivan@example.com" styleClass="profile-email"/>
+                </VBox>
+                <VBox.margin>
+                    <Insets top="10" right="15" bottom="15" left="15"/>
+                </VBox.margin>
+            </HBox>
+            
+        </VBox>
+    </left>
+    
+    <!-- ========== MAIN CONTENT ========== -->
+    <center>
+        <VBox styleClass="main-content" spacing="0">
+            
+            <!-- Верхняя панель -->
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
+                
+                <!-- Поиск -->
+                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+                    <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
+                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." 
+                              styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <!-- Кнопка добавить операцию -->
+                <Button text="+ Добавить операцию" styleClass="primary-button" 
+                       onAction="#handleAddOperation"/>
+                
+                <!-- Уведомления -->
+                <Button styleClass="icon-button" onAction="#handleNotifications">
+                    <graphic>
+                        <StackPane>
+                            <FontAwesomeIconView glyphName="BELL" size="18" styleClass="icon-button-icon"/>
+                            <Label text="3" styleClass="notification-badge"/>
+                        </StackPane>
+                    </graphic>
+                </Button>
+                
+                <!-- Профиль -->
+                <Button styleClass="icon-button" onAction="#handleProfile">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
+                    </graphic>
+                </Button>
+                
+                <HBox.margin>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </HBox.margin>
+            </HBox>
+            
+            <!-- Основной контент -->
+            <VBox styleClass="operations-content" spacing="0" VBox.vgrow="ALWAYS">
+                
+                <!-- Заголовок и описание -->
+                <VBox spacing="5">
+                    <Label text="Операции" styleClass="page-title"/>
+                    <Label text="Управление доходами и расходами" styleClass="page-subtitle"/>
+                    <VBox.margin>
+                        <Insets top="30" right="30" bottom="20" left="30"/>
+                    </VBox.margin>
+                </VBox>
+                
+                <!-- Панель фильтров -->
+                <HBox styleClass="filter-panel" alignment="CENTER_LEFT" spacing="15">
+                    
+                    <!-- Поиск по таблице -->
+                    <HBox styleClass="filter-search" spacing="10" alignment="CENTER_LEFT">
+                        <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
+                        <TextField fx:id="tableSearchField" 
+                                  promptText="Поиск по комментарию, категории..." 
+                                  styleClass="filter-search-field"/>
+                    </HBox>
+                    
+                    <!-- Фильтр по типу операции -->
+                    <ComboBox fx:id="typeFilterComboBox" 
+                             styleClass="filter-combo" 
+                             promptText="Все операции"
+                             prefWidth="150"/>
+                    
+                    <!-- Фильтр по категории -->
+                    <ComboBox fx:id="categoryFilterComboBox" 
+                             styleClass="filter-combo" 
+                             promptText="Все категории"
+                             prefWidth="150"/>
+                    
+                    <Region HBox.hgrow="ALWAYS"/>
+                    
+                    <!-- Кнопка фильтров -->
+                    <Button styleClass="filter-button" onAction="#handleShowFilters">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER">
+                                <FontAwesomeIconView glyphName="FILTER" size="14"/>
+                                <Label text="Фильтры"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- Кнопка экспорта -->
+                    <Button styleClass="filter-button" onAction="#handleExport">
+                        <graphic>
+                            <HBox spacing="8" alignment="CENTER">
+                                <FontAwesomeIconView glyphName="DOWNLOAD" size="14"/>
+                                <Label text="Экспорт"/>
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    
+                    <HBox.margin>
+                        <Insets top="0" right="30" bottom="20" left="30"/>
+                    </HBox.margin>
+                </HBox>
+                
+                <!-- Индикаторы типов операций -->
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <HBox spacing="8" alignment="CENTER">
+                        <StackPane styleClass="type-indicator, type-indicator-income"/>
+                        <Label text="Доходы" styleClass="type-label"/>
+                    </HBox>
+                    <HBox spacing="8" alignment="CENTER">
+                        <StackPane styleClass="type-indicator, type-indicator-expense"/>
+                        <Label text="Расходы" styleClass="type-label"/>
+                    </HBox>
+                    <HBox.margin>
+                        <Insets top="0" right="30" bottom="15" left="30"/>
+                    </HBox.margin>
+                </HBox>
+                
+                <!-- Карточка с таблицей -->
+                <VBox styleClass="table-card" VBox.vgrow="ALWAYS">
+                    
+                    <!-- Заголовок таблицы -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Список операций (12)" styleClass="table-header"/>
+                        <VBox.margin>
+                            <Insets top="0" right="0" bottom="15" left="0"/>
+                        </VBox.margin>
+                    </HBox>
+                    
+                    <!-- Таблица операций -->
+                    <TableView fx:id="operationsTable" styleClass="operations-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="dateColumn" text="Дата" prefWidth="120"/>
+                            <TableColumn fx:id="typeColumn" text="Тип" prefWidth="120"/>
+                            <TableColumn fx:id="categoryColumn" text="Категория" prefWidth="150"/>
+                            <TableColumn fx:id="commentColumn" text="Комментарий" prefWidth="300"/>
+                            <TableColumn fx:id="amountColumn" text="Сумма" prefWidth="150" styleClass="amount-column"/>
+                        </columns>
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="10">
+                                <FontAwesomeIconView glyphName="INBOX" size="48" styleClass="empty-icon"/>
+                                <Label text="Операций пока нет" styleClass="empty-text"/>
+                                <Label text="Нажмите 'Добавить операцию' чтобы создать первую" styleClass="empty-subtext"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                    
+                    <!-- Пагинация -->
+                    <HBox alignment="CENTER" spacing="15" styleClass="pagination">
+                        <Button text="←" styleClass="pagination-button" onAction="#handlePreviousPage"/>
+                        <Label fx:id="pageLabel" text="1 / 1" styleClass="page-number"/>
+                        <Button text="→" styleClass="pagination-button" onAction="#handleNextPage"/>
+                        <VBox.margin>
+                            <Insets top="20" right="0" bottom="0" left="0"/>
+                        </VBox.margin>
+                    </HBox>
+                    
+                    <VBox.margin>
+                        <Insets top="0" right="30" bottom="30" left="30"/>
+                    </VBox.margin>
+                </VBox>
+                
+            </VBox>
+            
+        </VBox>
+    </center>
+    
+</BorderPane>
