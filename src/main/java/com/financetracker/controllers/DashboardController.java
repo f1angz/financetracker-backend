@@ -265,7 +265,7 @@ public class DashboardController {
     @FXML
     private void handlePlansLimitsClick() {
         setActiveMenuItem(plansLimitsMenuItem);
-        showComingSoon("Plans & Limits");
+        SceneManager.switchScene("plans-limits");
     }
     
     @FXML

@@ -236,7 +236,7 @@ public class CategoriesController {
     
     @FXML
     private void handlePlansLimitsClick() {
-        showComingSoon("Plans & Limits");
+        SceneManager.switchScene("plans-limits");
     }
     
     @FXML
