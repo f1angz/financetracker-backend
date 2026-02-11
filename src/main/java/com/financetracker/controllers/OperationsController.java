@@ -428,7 +428,7 @@ public class OperationsController {
     
     @FXML
     private void handlePlansLimitsClick() {
-        showComingSoon("Plans & Limits");
+        SceneManager.switchScene("plans-limits");
     }
     
     @FXML

@@ -865,3 +865,193 @@
     -fx-font-weight: bold;
     -fx-text-fill: -text-primary;
 }
+
+/* ========================================
+   PLANS & LIMITS PAGE
+   ======================================== */
+
+.limits-page-title {
+    -fx-font-size: 42px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.limits-page-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limits-summary-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 18px 22px;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 12px;
+}
+
+.limits-summary-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limits-summary-value {
+    -fx-font-size: 42px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.limits-summary-spent {
+    -fx-text-fill: #DC2626;
+}
+
+.limits-summary-remaining {
+    -fx-text-fill: #16A34A;
+}
+
+.limit-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 18px;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 12px;
+}
+
+.limit-card-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.limit-card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limit-status-badge {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 6px 10px;
+    -fx-background-radius: 7px;
+}
+
+.limit-status-warning {
+    -fx-text-fill: #B45309;
+    -fx-background-color: #FEF3C7;
+    -fx-border-color: #FDE68A;
+    -fx-border-radius: 7px;
+}
+
+.limit-status-exceeded {
+    -fx-text-fill: #BE123C;
+    -fx-background-color: #FFE4E6;
+    -fx-border-color: #FDA4AF;
+    -fx-border-radius: 7px;
+}
+
+.limit-status-normal {
+    -fx-text-fill: #166534;
+    -fx-background-color: #DCFCE7;
+    -fx-border-color: #86EFAC;
+    -fx-border-radius: 7px;
+}
+
+.limit-edit-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4px;
+}
+
+.limit-edit-button:hover {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 6px;
+}
+
+.limit-edit-icon {
+    -fx-fill: -text-secondary;
+}
+
+.limit-value-line {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+    -fx-font-weight: 600;
+}
+
+.limit-percent {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.limit-percent-warning {
+    -fx-text-fill: #EA580C;
+}
+
+.limit-percent-exceeded {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-progress {
+    -fx-pref-height: 10px;
+}
+
+.limit-progress .track {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 999px;
+}
+
+.limit-progress .bar {
+    -fx-background-radius: 999px;
+}
+
+.limit-progress-warning .bar {
+    -fx-background-color: #F97316;
+}
+
+.limit-progress-exceeded .bar {
+    -fx-background-color: #EF4444;
+}
+
+.limit-progress-normal .bar {
+    -fx-background-color: #22C55E;
+}
+
+.limit-metric-caption {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limit-metric-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+}
+
+.limit-metric-spent {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-metric-remaining {
+    -fx-text-fill: #16A34A;
+}
+
+.limit-metric-over {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-hint {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 10px 14px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+.limit-hint-warning {
+    -fx-text-fill: #B45309;
+    -fx-background-color: #FFF7ED;
+    -fx-border-color: #FED7AA;
+}
+
+.limit-hint-danger {
+    -fx-text-fill: #B91C1C;
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #FECACA;
+}
