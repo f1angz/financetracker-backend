@@ -31,12 +31,6 @@
     -border-color: #E5E7EB;
     -border-focus: #3B82F6;
     
-    /* Тени */
-    -shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    -shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    -shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    -shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-    
     /* Цвета статистики */
     -color-blue: #3B82F6;
     -color-green: #10B981;
@@ -458,13 +452,13 @@
 }
 
 .app-title {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-font-weight: 700;
     -fx-text-fill: -text-primary;
 }
 
 .app-subtitle {
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: -text-secondary;
 }
 
