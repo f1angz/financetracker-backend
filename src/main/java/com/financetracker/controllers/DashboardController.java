@@ -259,7 +259,7 @@ public class DashboardController {
     @FXML
     private void handleCategoriesClick() {
         setActiveMenuItem(categoriesMenuItem);
-        showComingSoon("Categories");
+        SceneManager.switchScene("categories");
     }
     
     @FXML

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.financetracker.controllers.CategoriesController"
+           styleClass="dashboard-root">
+    
+    <!-- ========== SIDEBAR ========== -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
+            
+            <VBox styleClass="sidebar-header" spacing="5" alignment="CENTER_LEFT">
+                <Label text="Finance Tracker" styleClass="sidebar-title"/>
+                <Label text="Личные финансы" styleClass="sidebar-subtitle"/>
+                <VBox.margin>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </VBox.margin>
+            </VBox>
+            
+            <VBox styleClass="sidebar-menu" spacing="2" VBox.vgrow="ALWAYS">
+                
+                <Button fx:id="dashboardMenuItem" styleClass="menu-item" 
+                       onAction="#handleDashboardClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="DASHBOARD" size="16" styleClass="menu-icon"/>
+                            <Label text="Dashboard" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="operationsMenuItem" styleClass="menu-item" 
+                       onAction="#handleOperationsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="EXCHANGE" size="16" styleClass="menu-icon"/>
+                            <Label text="Operations" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="categoriesMenuItem" styleClass="menu-item, menu-item-active" 
+                       onAction="#handleCategoriesClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="FOLDER_OPEN" size="16" styleClass="menu-icon"/>
+                            <Label text="Categories" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="plansLimitsMenuItem" styleClass="menu-item" 
+                       onAction="#handlePlansLimitsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="LINE_CHART" size="16" styleClass="menu-icon"/>
+                            <Label text="Plans&amp;Limits" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="goalsDebtsMenuItem" styleClass="menu-item" 
+                       onAction="#handleGoalsDebtsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="TARGET" size="16" styleClass="menu-icon"/>
+                            <Label text="Goals &amp; Debts" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <Button fx:id="settingsMenuItem" styleClass="menu-item" 
+                       onAction="#handleSettingsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="COG" size="16" styleClass="menu-icon"/>
+                            <Label text="Settings" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+                
+                <VBox.margin>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </VBox.margin>
+            </VBox>
+            
+            <HBox styleClass="sidebar-profile" spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="profile-avatar">
+                    <Label text="ИП" styleClass="profile-initials"/>
+                </StackPane>
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label fx:id="userNameLabel" text="Иван Петров" styleClass="profile-name"/>
+                    <Label fx:id="userEmailLabel" text="ivan@example.com" styleClass="profile-email"/>
+                </VBox>
+                <VBox.margin>
+                    <Insets top="10" right="15" bottom="15" left="15"/>
+                </VBox.margin>
+            </HBox>
+            
+        </VBox>
+    </left>
+    
+    <!-- ========== MAIN CONTENT ========== -->
+    <center>
+        <VBox styleClass="main-content" spacing="0">
+            
+            <!-- Верхняя панель -->
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
+                
+                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+                    <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
+                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." 
+                              styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                
+                <Region HBox.hgrow="ALWAYS"/>
+                
+                <Button text="+ Добавить операцию" styleClass="primary-button" 
+                       onAction="#handleAddOperation"/>
+                
+                <Button styleClass="icon-button" onAction="#handleNotifications">
+                    <graphic>
+                        <StackPane>
+                            <FontAwesomeIconView glyphName="BELL" size="18" styleClass="icon-button-icon"/>
+                            <Label text="3" styleClass="notification-badge"/>
+                        </StackPane>
+                    </graphic>
+                </Button>
+                
+                <Button styleClass="icon-button" onAction="#handleProfile">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
+                    </graphic>
+                </Button>
+                
+                <HBox.margin>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </HBox.margin>
+            </HBox>
+            
+            <!-- Основной контент с прокруткой -->
+            <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox spacing="30">
+                    
+                    <!-- Заголовок -->
+                    <VBox spacing="5">
+                        <Label text="Категории" styleClass="page-title"/>
+                        <Label text="Управление категориями доходов и расходов" styleClass="page-subtitle"/>
+                    </VBox>
+                    
+                    <!-- Кнопка добавить категорию -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="+ Добавить категорию" styleClass="primary-button" 
+                               onAction="#handleAddCategory"/>
+                    </HBox>
+                    
+                    <!-- Категории расходов -->
+                    <VBox spacing="15">
+                        <Label text="Категории расходов" styleClass="section-title"/>
+                        
+                        <GridPane fx:id="expenseCategoriesGrid" styleClass="categories-grid" 
+                                 hgap="20" vgap="20">
+                        </GridPane>
+                    </VBox>
+                    
+                    <!-- Категории доходов -->
+                    <VBox spacing="15">
+                        <Label text="Категории доходов" styleClass="section-title"/>
+                        
+                        <GridPane fx:id="incomeCategoriesGrid" styleClass="categories-grid" 
+                                 hgap="20" vgap="20">
+                        </GridPane>
+                    </VBox>
+                    
+                    <!-- Универсальные категории -->
+                    <VBox spacing="15">
+                        <Label text="Универсальные категории" styleClass="section-title"/>
+                        
+                        <GridPane fx:id="universalCategoriesGrid" styleClass="categories-grid" 
+                                 hgap="20" vgap="20">
+                        </GridPane>
+                    </VBox>
+                    
+                    <VBox.margin>
+                        <Insets top="30" right="30" bottom="30" left="30"/>
+                    </VBox.margin>
+                </VBox>
+            </ScrollPane>
+            
+        </VBox>
+    </center>
+    
+</BorderPane>

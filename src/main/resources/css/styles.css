@@ -821,3 +821,47 @@
     -fx-text-fill: -text-secondary;
     -fx-font-weight: 500;
 }
+
+/* ========================================
+   CATEGORIES PAGE
+   ======================================== */
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.categories-grid {
+    -fx-padding: 0;
+}
+
+.category-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 4, 0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.category-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 8, 0, 0, 4);
+    -fx-translate-y: -2px;
+}
+
+.category-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.category-count {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.category-amount {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}

@@ -423,7 +423,7 @@ public class OperationsController {
     
     @FXML
     private void handleCategoriesClick() {
-        showComingSoon("Categories");
+        SceneManager.switchScene("categories");
     }
     
     @FXML
