@@ -2,13 +2,10 @@ package com.financetracker;
 
 import com.financetracker.utils.SceneManager;
 import javafx.application.Application;
-import javafx.beans.property.Property;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.Map;
 import java.util.Objects;
-import java.util.Properties;
 
 /**
  * Главный класс приложения Finance Tracker
@@ -26,8 +23,7 @@ public class FinanceTrackerApp extends Application {
             SceneManager.switchScene("login");
             
             primaryStage.setTitle("Finance Tracker");
-            primaryStage.setMinWidth(900);
-            primaryStage.setMinHeight(650);
+            primaryStage.setMaximized(true);
             primaryStage.show();
             
         } catch (Exception e) {

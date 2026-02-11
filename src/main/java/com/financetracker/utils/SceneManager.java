@@ -8,68 +8,46 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Менеджер для управления сценами приложения
  */
 public class SceneManager {
-    
+
     private static Stage primaryStage;
-    private static Map<String, Scene> scenes = new HashMap<>();
-    
-    public static void initialize(Stage stage) {
+    private static Scene mainScene;
+
+    public static void initialize(Stage stage) throws IOException {
         primaryStage = stage;
+
+        // создаём одну сцену
+        Parent root = loadRoot("login");
+        mainScene = new Scene(root);
+
+        String cssPath = SceneManager.class
+                .getResource("/css/styles.css")
+                .toExternalForm();
+
+        mainScene.getStylesheets().add(cssPath);
+
+        primaryStage.setScene(mainScene);
     }
-    
-    /**
-     * Переключение на указанную сцену
-     * @param sceneName имя FXML файла без расширения
-     */
+
     public static void switchScene(String sceneName) {
         try {
-            Scene scene = scenes.get(sceneName);
-            
-            if (scene == null) {
-                scene = loadScene(sceneName);
-                scenes.put(sceneName, scene);
-            }
-            
-            primaryStage.setScene(scene);
-            
+            Parent newRoot = loadRoot(sceneName);
+            mainScene.setRoot(newRoot);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Ошибка загрузки сцены: " + sceneName);
         }
     }
-    
-    /**
-     * Загрузка сцены из FXML файла
-     */
-    private static Scene loadScene(String sceneName) throws IOException {
+
+    private static Parent loadRoot(String sceneName) throws IOException {
         String fxmlPath = "/fxml/" + sceneName + ".fxml";
-        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
-        Parent root = loader.load();
-        
-        Scene scene = new Scene(root);
-        
-        // Загрузка глобальных стилей
-        String cssPath = SceneManager.class.getResource("/css/styles.css").toExternalForm();
-        scene.getStylesheets().add(cssPath);
-        
-        return scene;
-    }
-    
-    /**
-     * Получение главного Stage
-     */
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-    
-    /**
-     * Очистка кэша сцен (для обновления)
-     */
-    public static void clearCache() {
-        scenes.clear();
+        FXMLLoader loader =
+                new FXMLLoader(SceneManager.class.getResource(fxmlPath));
+        return loader.load();
     }
 }
+
