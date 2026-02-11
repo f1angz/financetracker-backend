@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.financetracker.controllers.SettingsController"
+            styleClass="dashboard-root">
+
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
+            <VBox styleClass="sidebar-header" spacing="5" alignment="CENTER_LEFT">
+                <Label text="Finance Tracker" styleClass="sidebar-title"/>
+                <Label text="Личные финансы" styleClass="sidebar-subtitle"/>
+                <VBox.margin>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </VBox.margin>
+            </VBox>
+
+            <VBox styleClass="sidebar-menu" spacing="2" VBox.vgrow="ALWAYS">
+                <Button fx:id="dashboardMenuItem" styleClass="menu-item" onAction="#handleDashboardClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="DASHBOARD" size="16" styleClass="menu-icon"/>
+                            <Label text="Dashboard" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="operationsMenuItem" styleClass="menu-item" onAction="#handleOperationsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="EXCHANGE" size="16" styleClass="menu-icon"/>
+                            <Label text="Operations" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="categoriesMenuItem" styleClass="menu-item" onAction="#handleCategoriesClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="FOLDER_OPEN" size="16" styleClass="menu-icon"/>
+                            <Label text="Categories" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="plansLimitsMenuItem" styleClass="menu-item" onAction="#handlePlansLimitsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="LINE_CHART" size="16" styleClass="menu-icon"/>
+                            <Label text="Plans/Limits" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="goalsDebtsMenuItem" styleClass="menu-item" onAction="#handleGoalsDebtsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="TARGET" size="16" styleClass="menu-icon"/>
+                            <Label text="Goals &amp; Debts" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="settingsMenuItem" styleClass="menu-item, menu-item-active" onAction="#handleSettingsClick" maxWidth="Infinity">
+                    <graphic>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <FontAwesomeIconView glyphName="COG" size="16" styleClass="menu-icon"/>
+                            <Label text="Settings" styleClass="menu-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <VBox.margin>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </VBox.margin>
+            </VBox>
+
+            <HBox styleClass="sidebar-profile" spacing="12" alignment="CENTER_LEFT">
+                <StackPane styleClass="profile-avatar">
+                    <Label text="ИП" styleClass="profile-initials"/>
+                </StackPane>
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label fx:id="userNameLabel" text="Иван Петров" styleClass="profile-name"/>
+                    <Label fx:id="userEmailLabel" text="ivan@example.com" styleClass="profile-email"/>
+                </VBox>
+                <VBox.margin>
+                    <Insets top="10" right="15" bottom="15" left="15"/>
+                </VBox.margin>
+            </HBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox styleClass="main-content" spacing="0">
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
+                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+                    <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
+                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="+   Добавить операцию" styleClass="primary-button" onAction="#handleAddOperation"/>
+
+                <Button styleClass="icon-button" onAction="#handleNotifications">
+                    <graphic>
+                        <StackPane>
+                            <FontAwesomeIconView glyphName="BELL" size="18" styleClass="icon-button-icon"/>
+                            <Label text="1" styleClass="notification-badge"/>
+                        </StackPane>
+                    </graphic>
+                </Button>
+
+                <Button styleClass="icon-button" onAction="#handleProfile">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
+                    </graphic>
+                </Button>
+
+                <HBox.margin>
+                    <Insets top="20" right="30" bottom="20" left="30"/>
+                </HBox.margin>
+            </HBox>
+
+            <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox spacing="16" styleClass="settings-page">
+                    <VBox spacing="6">
+                        <Label text="Настройки" styleClass="settings-page-title"/>
+                        <Label text="Персонализация и управление аккаунтом" styleClass="settings-page-subtitle"/>
+                    </VBox>
+
+                    <HBox spacing="16">
+                        <VBox styleClass="settings-card" spacing="14" HBox.hgrow="ALWAYS">
+                            <Label text="Внешний вид" styleClass="settings-section-title"/>
+
+                            <HBox alignment="CENTER_LEFT" spacing="14">
+                                <FontAwesomeIconView glyphName="SUN_O" size="18" styleClass="settings-leading-icon"/>
+                                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                    <Label text="Тёмная тема" styleClass="settings-item-title"/>
+                                    <Label text="Переключение между светлой и тёмной темой" styleClass="settings-item-subtitle"/>
+                                </VBox>
+                                <CheckBox fx:id="darkThemeToggle" styleClass="settings-switch"/>
+                            </HBox>
+
+                            <Separator/>
+
+                            <VBox spacing="8">
+                                <Label text="Валюта" styleClass="settings-item-title"/>
+                                <ChoiceBox fx:id="currencyChoice" maxWidth="Infinity" styleClass="settings-choice"/>
+                            </VBox>
+
+                            <VBox spacing="8">
+                                <Label text="Формат даты" styleClass="settings-item-title"/>
+                                <ChoiceBox fx:id="dateFormatChoice" maxWidth="Infinity" styleClass="settings-choice"/>
+                            </VBox>
+
+                            <Separator/>
+
+                            <HBox alignment="CENTER_LEFT" spacing="14">
+                                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                    <Label text="Уведомления" styleClass="settings-item-title"/>
+                                    <Label text="Получать уведомления о лимитах и целях" styleClass="settings-item-subtitle"/>
+                                </VBox>
+                                <CheckBox fx:id="notificationsToggle" styleClass="settings-switch settings-switch-dark"/>
+                            </HBox>
+                        </VBox>
+
+                        <VBox styleClass="settings-card settings-profile-card" spacing="14" prefWidth="360">
+                            <Label text="Профиль" styleClass="settings-section-title"/>
+
+                            <VBox spacing="10" alignment="CENTER">
+                                <StackPane styleClass="settings-profile-avatar">
+                                    <Label fx:id="profileInitialsLabel" text="ИП" styleClass="settings-profile-initials"/>
+                                </StackPane>
+                                <Label fx:id="profileNameLabel" text="Иван Петров" styleClass="settings-profile-name"/>
+                                <Label fx:id="profileEmailLabel" text="ivan@example.com" styleClass="settings-profile-email"/>
+                            </VBox>
+
+                            <Separator/>
+
+                            <Button text="   Редактировать профиль" styleClass="settings-profile-action" onAction="#handleEditProfile">
+                                <graphic>
+                                    <FontAwesomeIconView glyphName="USER" size="13" styleClass="settings-profile-action-icon"/>
+                                </graphic>
+                            </Button>
+
+                            <Button text="   Сменить пароль" styleClass="settings-profile-action" onAction="#handleChangePassword">
+                                <graphic>
+                                    <FontAwesomeIconView glyphName="LOCK" size="13" styleClass="settings-profile-action-icon"/>
+                                </graphic>
+                            </Button>
+
+                            <Button text="   Выйти" styleClass="settings-profile-action settings-logout-button" onAction="#handleLogoutAction">
+                                <graphic>
+                                    <FontAwesomeIconView glyphName="SIGN_OUT" size="13" styleClass="settings-logout-icon"/>
+                                </graphic>
+                            </Button>
+                        </VBox>
+                    </HBox>
+
+                    <VBox styleClass="settings-card" spacing="14">
+                        <Label text="Безопасность" styleClass="settings-section-title"/>
+
+                        <GridPane hgap="14" vgap="8">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="33.3" hgrow="ALWAYS"/>
+                                <ColumnConstraints percentWidth="33.3" hgrow="ALWAYS"/>
+                                <ColumnConstraints percentWidth="33.4" hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Текущий пароль" styleClass="settings-item-title" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <Label text="Новый пароль" styleClass="settings-item-title" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                            <Label text="Подтвердите пароль" styleClass="settings-item-title" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+
+                            <PasswordField fx:id="currentPasswordField" styleClass="settings-input" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                            <PasswordField fx:id="newPasswordField" styleClass="settings-input" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            <PasswordField fx:id="confirmPasswordField" styleClass="settings-input" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_RIGHT">
+                            <Button text="Обновить пароль" styleClass="primary-button" onAction="#handleUpdatePassword"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+                <padding>
+                    <Insets top="24" right="30" bottom="30" left="30"/>
+                </padding>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

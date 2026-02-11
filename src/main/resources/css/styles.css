@@ -3,7 +3,7 @@
    ======================================== */
 
 .root {
-    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-family: "Arimo", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 14px;
 }
 
@@ -864,4 +864,457 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: -text-primary;
+}
+
+/* ========================================
+   PLANS & LIMITS PAGE
+   ======================================== */
+
+.limits-page-title {
+    -fx-font-size: 42px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.limits-page-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limits-summary-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 18px 22px;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 12px;
+}
+
+.limits-summary-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limits-summary-value {
+    -fx-font-size: 42px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.limits-summary-spent {
+    -fx-text-fill: #DC2626;
+}
+
+.limits-summary-remaining {
+    -fx-text-fill: #16A34A;
+}
+
+.limit-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 18px;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 12px;
+}
+
+.limit-card-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.limit-card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limit-status-badge {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-padding: 6px 10px;
+    -fx-background-radius: 7px;
+}
+
+.limit-status-warning {
+    -fx-text-fill: #B45309;
+    -fx-background-color: #FEF3C7;
+    -fx-border-color: #FDE68A;
+    -fx-border-radius: 7px;
+}
+
+.limit-status-exceeded {
+    -fx-text-fill: #BE123C;
+    -fx-background-color: #FFE4E6;
+    -fx-border-color: #FDA4AF;
+    -fx-border-radius: 7px;
+}
+
+.limit-status-normal {
+    -fx-text-fill: #166534;
+    -fx-background-color: #DCFCE7;
+    -fx-border-color: #86EFAC;
+    -fx-border-radius: 7px;
+}
+
+.limit-edit-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4px;
+}
+
+.limit-edit-button:hover {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 6px;
+}
+
+.limit-edit-icon {
+    -fx-fill: -text-secondary;
+}
+
+.limit-value-line {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+    -fx-font-weight: 600;
+}
+
+.limit-percent {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.limit-percent-warning {
+    -fx-text-fill: #EA580C;
+}
+
+.limit-percent-exceeded {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-progress {
+    -fx-pref-height: 10px;
+}
+
+.limit-progress .track {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 999px;
+}
+
+.limit-progress .bar {
+    -fx-background-radius: 999px;
+}
+
+.limit-progress-warning .bar {
+    -fx-background-color: #F97316;
+}
+
+.limit-progress-exceeded .bar {
+    -fx-background-color: #EF4444;
+}
+
+.limit-progress-normal .bar {
+    -fx-background-color: #22C55E;
+}
+
+.limit-metric-caption {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.limit-metric-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+}
+
+.limit-metric-spent {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-metric-remaining {
+    -fx-text-fill: #16A34A;
+}
+
+.limit-metric-over {
+    -fx-text-fill: #DC2626;
+}
+
+.limit-hint {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 10px 14px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+.limit-hint-warning {
+    -fx-text-fill: #B45309;
+    -fx-background-color: #FFF7ED;
+    -fx-border-color: #FED7AA;
+}
+
+.limit-hint-danger {
+    -fx-text-fill: #B91C1C;
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #FECACA;
+}
+
+/* ========================================
+   GOALS PAGE
+   ======================================== */
+
+.goals-page-title {
+    -fx-font-size: 46px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.goal-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 14px;
+    -fx-padding: 18px 20px 20px 20px;
+}
+
+.goal-icon {
+    -fx-font-size: 34px;
+}
+
+.goal-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.goal-days {
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-secondary;
+}
+
+.goal-days-icon {
+    -fx-fill: -text-secondary;
+}
+
+.goal-action-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 4px;
+}
+
+.goal-action-button:hover {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 6px;
+}
+
+.goal-action-icon {
+    -fx-fill: -text-primary;
+}
+
+.goal-delete-button .goal-action-icon {
+    -fx-fill: #DC2626;
+}
+
+.goal-ring-track {
+    -fx-stroke: #E5E7EB;
+}
+
+.goal-ring-inner {
+    -fx-fill: white;
+}
+
+.goal-progress-value {
+    -fx-font-size: 50px;
+    -fx-font-weight: 700;
+}
+
+.goal-progress-caption {
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+}
+
+.goal-metric-caption {
+    -fx-font-size: 12px;
+    -fx-text-fill: -text-secondary;
+}
+
+.goal-metric-value {
+    -fx-font-size: 38px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.goal-metric-saved {
+    -fx-text-fill: #16A34A;
+}
+
+.goal-metric-target {
+    -fx-font-size: 42px;
+}
+
+.goal-topup-button {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 16px;
+    -fx-cursor: hand;
+}
+
+.goal-topup-button:hover {
+    -fx-opacity: 0.95;
+}
+
+/* ===== SETTINGS PAGE ===== */
+.settings-page-title {
+    -fx-font-size: 46px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -text-primary;
+}
+
+.settings-page-subtitle {
+    -fx-font-size: 26px;
+    -fx-text-fill: -text-secondary;
+}
+
+.settings-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 14px;
+    -fx-padding: 22px;
+}
+
+.settings-section-title {
+    -fx-font-size: 34px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.settings-item-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.settings-item-subtitle {
+    -fx-font-size: 20px;
+    -fx-text-fill: -text-secondary;
+}
+
+.settings-leading-icon {
+    -fx-fill: #6B7280;
+}
+
+.settings-choice {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-font-size: 24px;
+    -fx-text-fill: -text-primary;
+}
+
+.settings-choice .label {
+    -fx-text-fill: -text-primary;
+}
+
+.settings-choice .arrow {
+    -fx-background-color: #9CA3AF;
+}
+
+.settings-switch {
+    -fx-cursor: hand;
+}
+
+.settings-switch .box {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 14px;
+    -fx-min-width: 44px;
+    -fx-pref-width: 44px;
+    -fx-max-width: 44px;
+    -fx-min-height: 24px;
+    -fx-pref-height: 24px;
+    -fx-max-height: 24px;
+    -fx-padding: 2px;
+}
+
+.settings-switch:selected .box {
+    -fx-background-color: #D1D5DB;
+}
+
+.settings-switch .mark {
+    -fx-background-color: white;
+    -fx-shape: "";
+    -fx-background-radius: 50%;
+    -fx-min-width: 18px;
+    -fx-pref-width: 18px;
+    -fx-max-width: 18px;
+    -fx-min-height: 18px;
+    -fx-pref-height: 18px;
+    -fx-max-height: 18px;
+}
+
+.settings-switch-dark:selected .box {
+    -fx-background-color: #111827;
+}
+
+.settings-profile-card {
+    -fx-min-width: 320px;
+}
+
+.settings-profile-avatar {
+    -fx-pref-width: 72px;
+    -fx-pref-height: 72px;
+    -fx-background-color: linear-gradient(to right, #2563EB, #3B82F6);
+    -fx-background-radius: 36px;
+}
+
+.settings-profile-initials {
+    -fx-font-size: 28px;
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+}
+
+.settings-profile-name {
+    -fx-font-size: 36px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -text-primary;
+}
+
+.settings-profile-email {
+    -fx-font-size: 26px;
+    -fx-text-fill: -text-secondary;
+}
+
+.settings-profile-action {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 10px;
+    -fx-font-size: 24px;
+    -fx-text-fill: -text-primary;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+}
+
+.settings-profile-action:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.settings-profile-action-icon {
+    -fx-fill: -text-primary;
+}
+
+.settings-logout-button {
+    -fx-text-fill: #DC2626;
+}
+
+.settings-logout-icon {
+    -fx-fill: #DC2626;
+}
+
+.settings-input {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-font-size: 22px;
+    -fx-pref-height: 44px;
 }

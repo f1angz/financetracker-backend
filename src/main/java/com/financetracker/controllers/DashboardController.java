@@ -265,19 +265,19 @@ public class DashboardController {
     @FXML
     private void handlePlansLimitsClick() {
         setActiveMenuItem(plansLimitsMenuItem);
-        showComingSoon("Plans & Limits");
+        SceneManager.switchScene("plans-limits");
     }
     
     @FXML
     private void handleGoalsDebtsClick() {
         setActiveMenuItem(goalsDebtsMenuItem);
-        showComingSoon("Goals & Debts");
+        SceneManager.switchScene("goals-debts");
     }
     
     @FXML
     private void handleSettingsClick() {
         setActiveMenuItem(settingsMenuItem);
-        showComingSoon("Settings");
+        SceneManager.switchScene("settings");
     }
     
     /**
