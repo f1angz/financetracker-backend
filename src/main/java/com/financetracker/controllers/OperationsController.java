@@ -43,7 +43,7 @@ public class OperationsController {
     // Table
     @FXML private TableView<Operation> operationsTable;
     @FXML private TableColumn<Operation, LocalDate> dateColumn;
-    @FXML private TableColumn<Operation, String> typeColumn;
+    @FXML private TableColumn<Operation, Operation.OperationType> typeColumn;
     @FXML private TableColumn<Operation, String> categoryColumn;
     @FXML private TableColumn<Operation, String> commentColumn;
     @FXML private TableColumn<Operation, Double> amountColumn;
@@ -144,16 +144,15 @@ public class OperationsController {
         
         // Колонка типа с иконками
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        typeColumn.setCellFactory(column -> new TableCell<Operation, String>() {
+        typeColumn.setCellFactory(column -> new TableCell<Operation, Operation.OperationType>() {
             @Override
-            protected void updateItem(String type, boolean empty) {
+            protected void updateItem(Operation.OperationType type, boolean empty) {
                 super.updateItem(type, empty);
                 if (empty || type == null) {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    Operation operation = getTableView().getItems().get(getIndex());
-                    HBox hbox = createTypeCell(operation.getType());
+                    HBox hbox = createTypeCell(type);
                     setGraphic(hbox);
                     setText(null);
                 }

@@ -36,7 +36,7 @@
                         <HBox spacing="12" alignment="CENTER_LEFT">
                             <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
                                 <image>
-                                    <Image url="@/icons/dashboard.png"/>
+                                    <Image url="@/icons/dashboard_active.png"/>
                                 </image>
                             </ImageView>
                             <VBox spacing="1">

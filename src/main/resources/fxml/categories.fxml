@@ -6,90 +6,137 @@
 <?import javafx.scene.text.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" 
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.financetracker.controllers.CategoriesController"
-           styleClass="dashboard-root">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.financetracker.controllers.CategoriesController"
+            styleClass="dashboard-root">
     
     <!-- ========== SIDEBAR ========== -->
     <left>
-        <VBox styleClass="sidebar" prefWidth="220" spacing="0">
-            
+        <VBox styleClass="sidebar" prefWidth="256">
+
+            <!-- Логотип и название -->
             <VBox styleClass="sidebar-header" spacing="5" alignment="CENTER_LEFT">
                 <Label text="Finance Tracker" styleClass="sidebar-title"/>
                 <Label text="Личные финансы" styleClass="sidebar-subtitle"/>
                 <VBox.margin>
-                    <Insets top="20" right="20" bottom="20" left="20"/>
+                    <Insets top="24" right="24" bottom="20" left="24"/>
                 </VBox.margin>
             </VBox>
-            
-            <VBox styleClass="sidebar-menu" spacing="2" VBox.vgrow="ALWAYS">
-                
-                <Button fx:id="dashboardMenuItem" styleClass="menu-item" 
-                       onAction="#handleDashboardClick" maxWidth="Infinity">
+
+            <!-- Меню навигации -->
+            <VBox styleClass="sidebar-menu" spacing="4" VBox.vgrow="ALWAYS">
+
+                <Button fx:id="dashboardMenuItem" styleClass="menu-item, menu-item-active"
+                        onAction="#handleDashboardClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="DASHBOARD" size="16" styleClass="menu-icon"/>
-                            <Label text="Dashboard" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/dashboard_active.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Dashboard" styleClass="menu-label"/>
+                                <Label text="Сводка" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
-                <Button fx:id="operationsMenuItem" styleClass="menu-item" 
-                       onAction="#handleOperationsClick" maxWidth="Infinity">
+
+                <Button fx:id="operationsMenuItem" styleClass="menu-item"
+                        onAction="#handleOperationsClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="EXCHANGE" size="16" styleClass="menu-icon"/>
-                            <Label text="Operations" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/operations_active.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Operations" styleClass="menu-label"/>
+                                <Label text="Операции" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
-                <Button fx:id="categoriesMenuItem" styleClass="menu-item, menu-item-active" 
-                       onAction="#handleCategoriesClick" maxWidth="Infinity">
+
+                <Button fx:id="categoriesMenuItem" styleClass="menu-item"
+                        onAction="#handleCategoriesClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="FOLDER_OPEN" size="16" styleClass="menu-icon"/>
-                            <Label text="Categories" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/categories.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Categories" styleClass="menu-label"/>
+                                <Label text="Категории" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
-                <Button fx:id="plansLimitsMenuItem" styleClass="menu-item" 
-                       onAction="#handlePlansLimitsClick" maxWidth="Infinity">
+
+                <Button fx:id="plansLimitsMenuItem" styleClass="menu-item"
+                        onAction="#handlePlansLimitsClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="LINE_CHART" size="16" styleClass="menu-icon"/>
-                            <Label text="Plans&amp;Limits" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/limits.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Plans/Limits" styleClass="menu-label"/>
+                                <Label text="Лимиты" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
-                <Button fx:id="goalsDebtsMenuItem" styleClass="menu-item" 
-                       onAction="#handleGoalsDebtsClick" maxWidth="Infinity">
+
+                <Button fx:id="goalsDebtsMenuItem" styleClass="menu-item"
+                        onAction="#handleGoalsDebtsClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="TARGET" size="16" styleClass="menu-icon"/>
-                            <Label text="Goals &amp; Debts" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/goals.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Goals &amp; Debts" styleClass="menu-label"/>
+                                <Label text="Цели и долги" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
-                <Button fx:id="settingsMenuItem" styleClass="menu-item" 
-                       onAction="#handleSettingsClick" maxWidth="Infinity">
+
+                <Button fx:id="settingsMenuItem" styleClass="menu-item"
+                        onAction="#handleSettingsClick" maxWidth="Infinity">
                     <graphic>
                         <HBox spacing="12" alignment="CENTER_LEFT">
-                            <FontAwesomeIconView glyphName="COG" size="16" styleClass="menu-icon"/>
-                            <Label text="Settings" styleClass="menu-label"/>
+                            <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                <image>
+                                    <Image url="@/icons/settings.png"/>
+                                </image>
+                            </ImageView>
+                            <VBox spacing="1">
+                                <Label text="Settings" styleClass="menu-label"/>
+                                <Label text="Настройки" styleClass="menu-sublabel"/>
+                            </VBox>
                         </HBox>
                     </graphic>
                 </Button>
-                
+
                 <VBox.margin>
                     <Insets top="10" right="10" bottom="10" left="10"/>
                 </VBox.margin>
             </VBox>
-            
+
+            <!-- Профиль пользователя -->
             <HBox styleClass="sidebar-profile" spacing="12" alignment="CENTER_LEFT">
                 <StackPane styleClass="profile-avatar">
                     <Label text="ИП" styleClass="profile-initials"/>
@@ -102,46 +149,69 @@
                     <Insets top="10" right="15" bottom="15" left="15"/>
                 </VBox.margin>
             </HBox>
-            
+
         </VBox>
     </left>
     
     <!-- ========== MAIN CONTENT ========== -->
     <center>
-        <VBox styleClass="main-content" spacing="0">
+        <VBox styleClass="main-content">
             
             <!-- Верхняя панель -->
-            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
-                
-                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
-                    <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
-                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." 
-                              styleClass="search-field" HBox.hgrow="ALWAYS"/>
+            <HBox styleClass="top-bar"
+                  alignment="CENTER_LEFT"
+                  spacing="20"
+                  prefHeight="64">
+
+                <padding>
+                    <Insets top="20" right="32" bottom="20" left="32"/>
+                </padding>
+
+                <!-- Поиск -->
+                <HBox styleClass="search-box"
+                      alignment="CENTER_LEFT"
+                      spacing="10"
+                      prefWidth="570"
+                      maxWidth="570">
+
+                    <FontAwesomeIconView glyphName="SEARCH"
+                                         size="14"
+                                         styleClass="search-icon"/>
+
+                    <TextField fx:id="searchField"
+                               promptText="Поиск операций, категорий..."
+                               styleClass="search-field"
+                               prefWidth="190"/>
                 </HBox>
-                
+
                 <Region HBox.hgrow="ALWAYS"/>
-                
-                <Button text="+ Добавить операцию" styleClass="primary-button" 
-                       onAction="#handleAddOperation"/>
-                
-                <Button styleClass="icon-button" onAction="#handleNotifications">
+
+                <Button text="+ Добавить операцию"
+                        styleClass="primary-button"
+                        onAction="#handleAddOperation"/>
+
+                <Button styleClass="icon-button"
+                        onAction="#handleNotifications">
                     <graphic>
                         <StackPane>
-                            <FontAwesomeIconView glyphName="BELL" size="18" styleClass="icon-button-icon"/>
-                            <Label text="3" styleClass="notification-badge"/>
+                            <FontAwesomeIconView glyphName="BELL"
+                                                 size="18"
+                                                 styleClass="icon-button-icon"/>
+                            <Label text="3"
+                                   styleClass="notification-badge"/>
                         </StackPane>
                     </graphic>
                 </Button>
-                
-                <Button styleClass="icon-button" onAction="#handleProfile">
+
+                <Button styleClass="icon-button"
+                        onAction="#handleProfile">
                     <graphic>
-                        <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
+                        <FontAwesomeIconView glyphName="USER"
+                                             size="18"
+                                             styleClass="icon-button-icon"/>
                     </graphic>
                 </Button>
-                
-                <HBox.margin>
-                    <Insets top="20" right="30" bottom="20" left="30"/>
-                </HBox.margin>
+
             </HBox>
             
             <!-- Основной контент с прокруткой -->
