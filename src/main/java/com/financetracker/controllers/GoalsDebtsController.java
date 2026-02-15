@@ -86,7 +86,7 @@ public class GoalsDebtsController {
     }
 
     private VBox createGoalCard(Goal goal) {
-        VBox card = new VBox(18);
+        VBox card = new VBox(16);
         card.getStyleClass().add("goal-card");
 
         HBox header = new HBox(12);
@@ -121,10 +121,10 @@ public class GoalsDebtsController {
 
         header.getChildren().addAll(iconLabel, titleBox, spacer, editButton, deleteButton);
 
-        StackPane progressPane = createSegmentedProgress(goal);
+        StackPane progressPane = createCircularProgress(goal);
         VBox.setVgrow(progressPane, Priority.NEVER);
 
-        HBox metricsRow = new HBox(50);
+        HBox metricsRow = new HBox();
         metricsRow.setAlignment(Pos.CENTER_LEFT);
 
         VBox savedBox = new VBox(4);
@@ -134,6 +134,9 @@ public class GoalsDebtsController {
         savedValue.getStyleClass().addAll("goal-metric-value", "goal-metric-saved");
         savedBox.getChildren().addAll(savedCaption, savedValue);
 
+        Region metricsSpacer = new Region();
+        HBox.setHgrow(metricsSpacer, Priority.ALWAYS);
+
         VBox remainingBox = new VBox(4);
         Label remainingCaption = new Label("Осталось");
         remainingCaption.getStyleClass().add("goal-metric-caption");
@@ -141,11 +144,10 @@ public class GoalsDebtsController {
         remainingValue.getStyleClass().add("goal-metric-value");
         remainingBox.getChildren().addAll(remainingCaption, remainingValue);
 
-        metricsRow.getChildren().addAll(savedBox, remainingBox);
-
-        Separator separator = new Separator();
+        metricsRow.getChildren().addAll(savedBox, metricsSpacer, remainingBox);
 
         VBox targetBox = new VBox(4);
+        targetBox.getStyleClass().add("goal-separator");
         Label targetCaption = new Label("Целевая сумма");
         targetCaption.getStyleClass().add("goal-metric-caption");
         Label targetValue = new Label(formatCurrency(goal.getTargetAmount()));
@@ -154,61 +156,52 @@ public class GoalsDebtsController {
 
         Button topUpButton = new Button("Пополнить");
         topUpButton.getStyleClass().add("goal-topup-button");
-        topUpButton.setStyle("-fx-background-color: linear-gradient(to right, " + goal.getColor() + ", " + lightenColor(goal.getColor()) + ");");
+        topUpButton.setStyle("-fx-background-color: " + goal.getColor() + ";");
         topUpButton.setMaxWidth(Double.MAX_VALUE);
         topUpButton.setOnAction(e -> showComingSoon("Пополнение цели"));
 
-        card.getChildren().addAll(header, progressPane, metricsRow, separator, targetBox, topUpButton);
+        card.getChildren().addAll(header, progressPane, metricsRow, targetBox, topUpButton);
         return card;
     }
 
     /**
-     * Кольцевой segmented-progress (4 сегмента) с динамическим заполнением по проценту цели.
+     * Кольцевой непрерывный progress с динамическим заполнением по проценту цели.
      */
-    private StackPane createSegmentedProgress(Goal goal) {
+    private StackPane createCircularProgress(Goal goal) {
         StackPane wrapper = new StackPane();
-        wrapper.setPrefSize(220, 220);
+        wrapper.setPrefHeight(192);
+        wrapper.setMaxHeight(192);
 
         Pane ringPane = new Pane();
-        ringPane.setPrefSize(170, 170);
+        ringPane.setPrefSize(160, 160);
+        ringPane.setMaxSize(160, 160);
 
         double progress = Math.max(0.0, Math.min(goal.getProgress(), 100.0)) / 100.0;
 
-        double center = 85;
-        double radius = 67;
-        double strokeWidth = 14;
-        double segmentLength = 72; // 4 * 72 = 288 degrees
-        double gap = 18;           // 4 * 18 = 72 degrees
+        double center = 80;
+        double radius = 70;
+        double strokeWidth = 12;
 
-        for (int i = 0; i < 4; i++) {
-            double startAngle = 90 - (i * (segmentLength + gap));
+        // Track — полный круг
+        Arc track = new Arc(center, center, radius, radius, 90, -360);
+        track.setFill(null);
+        track.setStrokeWidth(strokeWidth);
+        track.setStrokeLineCap(StrokeLineCap.ROUND);
+        track.setType(ArcType.OPEN);
+        track.getStyleClass().add("goal-ring-track");
 
-            Arc track = new Arc(center, center, radius, radius, startAngle, -segmentLength);
-            track.setFill(null);
-            track.setStrokeWidth(strokeWidth);
-            track.setStrokeLineCap(StrokeLineCap.ROUND);
-            track.setType(ArcType.OPEN);
-            track.getStyleClass().add("goal-ring-track");
+        // Fill — заполненная дуга от верха по часовой
+        double fillAngle = 360.0 * progress;
+        Arc fill = new Arc(center, center, radius, radius, 90, -fillAngle);
+        fill.setFill(null);
+        fill.setStrokeWidth(strokeWidth);
+        fill.setStrokeLineCap(StrokeLineCap.ROUND);
+        fill.setType(ArcType.OPEN);
+        fill.setStyle("-fx-stroke: " + goal.getColor() + ";");
 
-            double segmentStart = i * 0.25;
-            double segmentProgress = (progress - segmentStart) / 0.25;
-            segmentProgress = Math.max(0.0, Math.min(segmentProgress, 1.0));
+        ringPane.getChildren().addAll(track, fill);
 
-            Arc fill = new Arc(center, center, radius, radius, startAngle, -(segmentLength * segmentProgress));
-            fill.setFill(null);
-            fill.setStrokeWidth(strokeWidth);
-            fill.setStrokeLineCap(StrokeLineCap.ROUND);
-            fill.setType(ArcType.OPEN);
-            fill.setStyle("-fx-stroke: " + goal.getColor() + ";");
-
-            ringPane.getChildren().addAll(track, fill);
-        }
-
-        Circle innerCircle = new Circle(center, center, 45);
-        innerCircle.getStyleClass().add("goal-ring-inner");
-        ringPane.getChildren().add(innerCircle);
-
-        VBox centerContent = new VBox(4);
+        VBox centerContent = new VBox(2);
         centerContent.setAlignment(Pos.CENTER);
         centerContent.setMouseTransparent(true);
 

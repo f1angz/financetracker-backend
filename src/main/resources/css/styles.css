@@ -847,10 +847,32 @@
    CATEGORIES PAGE
    ======================================== */
 
-.section-title {
-    -fx-font-size: 18px;
-    -fx-font-weight: 600;
+.categories-page-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
     -fx-text-fill: -text-primary;
+}
+
+.categories-page-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4A5565;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
+}
+
+.section-badge {
+    -fx-font-size: 12px;
+    -fx-text-fill: #0A0A0A;
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 3 9;
 }
 
 .categories-grid {
@@ -859,30 +881,36 @@
 
 .category-card {
     -fx-background-color: white;
-    -fx-background-radius: 12px;
-    -fx-padding: 20px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 4, 0, 0, 2);
+    -fx-background-radius: 14px;
+    -fx-padding: 24px;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-width: 1;
+    -fx-border-radius: 14px;
     -fx-cursor: hand;
 }
 
 .category-card:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 8, 0, 0, 4);
-    -fx-translate-y: -2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 6, 0, 0, 2);
 }
 
 .category-name {
-    -fx-font-size: 16px;
-    -fx-font-weight: 600;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
     -fx-text-fill: -text-primary;
 }
 
 .category-count {
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-secondary;
+}
+
+.category-total-label {
+    -fx-font-size: 12px;
     -fx-text-fill: -text-secondary;
 }
 
 .category-amount {
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: -text-primary;
 }
@@ -904,87 +932,102 @@
 
 .limits-summary-card {
     -fx-background-color: white;
-    -fx-background-radius: 12px;
-    -fx-padding: 18px 22px;
-    -fx-border-color: -border-color;
-    -fx-border-radius: 12px;
+    -fx-background-radius: 14px;
+    -fx-padding: 24px;
+    -fx-border-color: rgba(0,0,0,0.1);
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
 }
 
 .limits-summary-label {
-    -fx-font-size: 13px;
-    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+    -fx-text-fill: #4A5565;
 }
 
 .limits-summary-value {
-    -fx-font-size: 24px;
+    -fx-font-size: 30px;
     -fx-font-weight: 700;
-    -fx-text-fill: -text-primary;
+    -fx-text-fill: #101828;
 }
 
 .limits-summary-spent {
-    -fx-text-fill: #DC2626;
+    -fx-text-fill: #E7000B;
 }
 
 .limits-summary-remaining {
-    -fx-text-fill: #16A34A;
+    -fx-text-fill: #00A63E;
 }
 
 .limit-card {
     -fx-background-color: white;
-    -fx-background-radius: 12px;
-    -fx-padding: 18px;
-    -fx-border-color: -border-color;
-    -fx-border-radius: 12px;
+    -fx-background-radius: 14px;
+    -fx-padding: 0;
+    -fx-border-color: rgba(0,0,0,0.1);
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+}
+
+.limit-card-header {
+    -fx-padding: 24px 24px 6px 24px;
+}
+
+.limit-card-content {
+    -fx-padding: 24px 24px 24px 24px;
 }
 
 .limit-card-title {
-    -fx-font-size: 18px;
-    -fx-font-weight: 600;
-    -fx-text-fill: -text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #0A0A0A;
 }
 
 .limit-card-subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+    -fx-text-fill: #6A7282;
 }
 
 .limit-status-badge {
     -fx-font-size: 12px;
-    -fx-font-weight: 600;
+    -fx-font-weight: 400;
     -fx-padding: 6px 10px;
-    -fx-background-radius: 7px;
+    -fx-background-radius: 8px;
+    -fx-border-width: 1px;
 }
 
 .limit-status-warning {
-    -fx-text-fill: #B45309;
-    -fx-background-color: #FEF3C7;
-    -fx-border-color: #FDE68A;
-    -fx-border-radius: 7px;
+    -fx-text-fill: #CA3500;
+    -fx-background-color: #FFF7ED;
+    -fx-border-color: #FFD6A8;
+    -fx-border-radius: 8px;
 }
 
 .limit-status-exceeded {
-    -fx-text-fill: #BE123C;
-    -fx-background-color: #FFE4E6;
-    -fx-border-color: #FDA4AF;
-    -fx-border-radius: 7px;
+    -fx-text-fill: #C10007;
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #FFC9C9;
+    -fx-border-radius: 8px;
 }
 
 .limit-status-normal {
-    -fx-text-fill: #166534;
-    -fx-background-color: #DCFCE7;
-    -fx-border-color: #86EFAC;
-    -fx-border-radius: 7px;
+    -fx-text-fill: #008236;
+    -fx-background-color: #F0FDF4;
+    -fx-border-color: #B9F8CF;
+    -fx-border-radius: 8px;
 }
 
 .limit-edit-button {
     -fx-background-color: transparent;
     -fx-cursor: hand;
-    -fx-padding: 4px;
+    -fx-padding: 8px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
 }
 
 .limit-edit-button:hover {
     -fx-background-color: #F3F4F6;
-    -fx-background-radius: 6px;
+    -fx-background-radius: 8px;
 }
 
 .limit-edit-icon {
@@ -993,8 +1036,8 @@
 
 .limit-value-line {
     -fx-font-size: 14px;
-    -fx-text-fill: -text-secondary;
-    -fx-font-weight: 600;
+    -fx-text-fill: #364153;
+    -fx-font-weight: 400;
 }
 
 .limit-percent {
@@ -1003,7 +1046,7 @@
 }
 
 .limit-percent-warning {
-    -fx-text-fill: #EA580C;
+    -fx-text-fill: #F54900;
 }
 
 .limit-percent-exceeded {
@@ -1011,7 +1054,7 @@
 }
 
 .limit-progress {
-    -fx-pref-height: 10px;
+    -fx-pref-height: 12px;
 }
 
 .limit-progress .track {
@@ -1024,7 +1067,7 @@
 }
 
 .limit-progress-warning .bar {
-    -fx-background-color: #F97316;
+    -fx-background-color: #FF6900;
 }
 
 .limit-progress-exceeded .bar {
@@ -1046,35 +1089,42 @@
 }
 
 .limit-metric-spent {
-    -fx-text-fill: #DC2626;
+    -fx-text-fill: #E7000B;
 }
 
 .limit-metric-remaining {
-    -fx-text-fill: #16A34A;
+    -fx-text-fill: #00A63E;
 }
 
 .limit-metric-over {
-    -fx-text-fill: #DC2626;
+    -fx-text-fill: #E7000B;
+}
+
+.limit-metrics-separator {
+    -fx-border-color: #F3F4F6 transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-padding: 17px 0 0 0;
 }
 
 .limit-hint {
-    -fx-font-size: 13px;
-    -fx-font-weight: 500;
-    -fx-padding: 10px 14px;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-padding: 13px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
 }
 
 .limit-hint-warning {
-    -fx-text-fill: #B45309;
+    -fx-text-fill: #CA3500;
     -fx-background-color: #FFF7ED;
-    -fx-border-color: #FED7AA;
+    -fx-border-color: #FFD6A8;
 }
 
 .limit-hint-danger {
-    -fx-text-fill: #B91C1C;
+    -fx-text-fill: #C10007;
     -fx-background-color: #FEF2F2;
-    -fx-border-color: #FECACA;
+    -fx-border-color: #FFC9C9;
 }
 
 /* ========================================
@@ -1090,9 +1140,10 @@
 .goal-card {
     -fx-background-color: white;
     -fx-background-radius: 14px;
-    -fx-border-color: -border-color;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
     -fx-border-radius: 14px;
-    -fx-padding: 18px 20px 20px 20px;
+    -fx-border-width: 1px;
+    -fx-padding: 24px 24px 24px 24px;
 }
 
 .goal-icon {
@@ -1101,13 +1152,13 @@
 
 .goal-title {
     -fx-font-size: 16px;
-    -fx-font-weight: 500;
-    -fx-text-fill: -text-primary;
+    -fx-font-weight: 400;
+    -fx-text-fill: #0a0a0a;
 }
 
 .goal-days {
-    -fx-font-size: 13px;
-    -fx-text-fill: -text-secondary;
+    -fx-font-size: 14px;
+    -fx-text-fill: #6a7282;
 }
 
 .goal-days-icon {
@@ -1130,7 +1181,13 @@
 }
 
 .goal-delete-button .goal-action-icon {
-    -fx-fill: #DC2626;
+    -fx-fill: #EF4444;
+}
+
+.goal-separator {
+    -fx-border-color: #f3f4f6 transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-padding: 13px 0 0 0;
 }
 
 .goal-ring-track {
@@ -1147,13 +1204,13 @@
 }
 
 .goal-progress-caption {
-    -fx-font-size: 14px;
-    -fx-text-fill: -text-secondary;
+    -fx-font-size: 12px;
+    -fx-text-fill: #6a7282;
 }
 
 .goal-metric-caption {
     -fx-font-size: 12px;
-    -fx-text-fill: -text-secondary;
+    -fx-text-fill: #6a7282;
 }
 
 .goal-metric-value {
@@ -1163,7 +1220,7 @@
 }
 
 .goal-metric-saved {
-    -fx-text-fill: #16A34A;
+    -fx-text-fill: #00a63e;
 }
 
 .goal-metric-target {
@@ -1173,9 +1230,9 @@
 .goal-topup-button {
     -fx-text-fill: white;
     -fx-font-size: 14px;
-    -fx-font-weight: 500;
-    -fx-background-radius: 10px;
-    -fx-padding: 12px 16px;
+    -fx-font-weight: 400;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
     -fx-cursor: hand;
 }
 

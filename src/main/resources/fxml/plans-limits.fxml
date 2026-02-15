@@ -135,40 +135,65 @@
 
     <center>
         <VBox styleClass="main-content" spacing="0">
-            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
-                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
-                    <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
-                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+            <HBox styleClass="top-bar"
+                  alignment="CENTER_LEFT"
+                  spacing="20"
+                  prefHeight="64">
+
+                <padding>
+                    <Insets top="20" right="32" bottom="20" left="32"/>
+                </padding>
+
+                <HBox styleClass="search-box"
+                      alignment="CENTER_LEFT"
+                      spacing="10"
+                      prefWidth="570"
+                      maxWidth="570">
+
+                    <FontAwesomeIconView glyphName="SEARCH"
+                                         size="14"
+                                         styleClass="search-icon"/>
+
+                    <TextField fx:id="searchField"
+                               promptText="Поиск операций, категорий..."
+                               styleClass="search-field"
+                               prefWidth="190"/>
                 </HBox>
 
                 <Region HBox.hgrow="ALWAYS"/>
 
-                <Button text="+   Добавить операцию" styleClass="primary-button" onAction="#handleAddOperation"/>
+                <Button text="+ Добавить операцию"
+                        styleClass="primary-button"
+                        onAction="#handleAddOperation"/>
 
-                <Button styleClass="icon-button" onAction="#handleNotifications">
+                <Button styleClass="icon-button"
+                        onAction="#handleNotifications">
                     <graphic>
                         <StackPane>
-                            <FontAwesomeIconView glyphName="BELL" size="18" styleClass="icon-button-icon"/>
-                            <Label text="1" styleClass="notification-badge"/>
+                            <FontAwesomeIconView glyphName="BELL"
+                                                 size="18"
+                                                 styleClass="icon-button-icon"/>
+                            <Label text="3"
+                                   styleClass="notification-badge"/>
                         </StackPane>
                     </graphic>
                 </Button>
 
-                <Button styleClass="icon-button" onAction="#handleProfile">
+                <Button styleClass="icon-button"
+                        onAction="#handleProfile">
                     <graphic>
-                        <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
+                        <FontAwesomeIconView glyphName="USER"
+                                             size="18"
+                                             styleClass="icon-button-icon"/>
                     </graphic>
                 </Button>
 
-                <HBox.margin>
-                    <Insets top="20" right="30" bottom="20" left="30"/>
-                </HBox.margin>
             </HBox>
 
             <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
-                <VBox spacing="20">
+                <VBox spacing="24">
                     <HBox alignment="CENTER_LEFT">
-                        <VBox spacing="6">
+                        <VBox spacing="8">
                             <Label text="Лимиты по категориям" styleClass="limits-page-title"/>
                             <Label text="Контроль расходов и бюджетирование" styleClass="limits-page-subtitle"/>
                         </VBox>
@@ -176,22 +201,22 @@
                         <Button text="+    Добавить лимит" styleClass="primary-button" onAction="#handleAddLimit"/>
                     </HBox>
 
-                    <HBox spacing="16">
-                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="8">
+                    <HBox spacing="24">
+                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="4">
                             <Label text="Общий лимит" styleClass="limits-summary-label"/>
                             <Label fx:id="totalLimitLabel" text="₽ 78 000" styleClass="limits-summary-value"/>
                         </VBox>
-                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="8">
+                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="4">
                             <Label text="Потрачено" styleClass="limits-summary-label"/>
-                            <Label fx:id="spentLabel" text="₽ 69 200" styleClass="limits-summary-value limits-summary-spent"/>
+                            <Label fx:id="spentLabel" text="₽ 69 200" styleClass="limits-summary-value"/>
                         </VBox>
-                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="8">
+                        <VBox styleClass="limits-summary-card" HBox.hgrow="ALWAYS" spacing="4">
                             <Label text="Осталось" styleClass="limits-summary-label"/>
-                            <Label fx:id="remainingLabel" text="₽ 8 800" styleClass="limits-summary-value limits-summary-remaining"/>
+                            <Label fx:id="remainingLabel" text="₽ 8 800" styleClass="limits-summary-value"/>
                         </VBox>
                     </HBox>
 
-                    <GridPane fx:id="limitsGrid" hgap="16" vgap="16">
+                    <GridPane fx:id="limitsGrid" hgap="24" vgap="24">
                         <columnConstraints>
                             <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
                             <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
@@ -199,7 +224,7 @@
                     </GridPane>
                 </VBox>
                 <padding>
-                    <Insets top="24" right="30" bottom="30" left="30"/>
+                    <Insets top="32" right="32" bottom="32" left="32"/>
                 </padding>
             </ScrollPane>
         </VBox>

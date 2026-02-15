@@ -67,8 +67,14 @@ public class PlansLimitsController {
 
     private void loadSummary() {
         totalLimitLabel.setText(formatCurrency(plansLimitsService.getTotalLimit()));
-        spentLabel.setText(formatCurrency(plansLimitsService.getTotalSpent()));
-        remainingLabel.setText(formatCurrency(plansLimitsService.getTotalRemaining()));
+
+        double totalSpent = plansLimitsService.getTotalSpent();
+        spentLabel.setText(formatCurrency(totalSpent));
+        spentLabel.getStyleClass().add("limits-summary-spent");
+
+        double totalRemaining = plansLimitsService.getTotalRemaining();
+        remainingLabel.setText(formatCurrency(totalRemaining));
+        remainingLabel.getStyleClass().add("limits-summary-remaining");
     }
 
     private void loadLimitsCards() {
@@ -94,14 +100,15 @@ public class PlansLimitsController {
     }
 
     private VBox createLimitCard(SpendingLimit limit) {
-        VBox card = new VBox(14);
+        VBox card = new VBox(0);
         card.getStyleClass().add("limit-card");
 
-        // Header
+        // === Header section ===
         HBox header = new HBox(10);
         header.setAlignment(Pos.CENTER_LEFT);
+        header.getStyleClass().add("limit-card-header");
 
-        VBox titleBox = new VBox(2);
+        VBox titleBox = new VBox(4);
         Label categoryLabel = new Label(limit.getCategory());
         categoryLabel.getStyleClass().add("limit-card-title");
 
@@ -122,7 +129,7 @@ public class PlansLimitsController {
             statusBadge.setText("⚠ Близко к лимиту");
             statusBadge.getStyleClass().add("limit-status-warning");
         } else {
-            statusBadge.setText("✓ В пределах");
+            statusBadge.setText("✓ В пределах нормы");
             statusBadge.getStyleClass().add("limit-status-normal");
         }
 
@@ -137,7 +144,13 @@ public class PlansLimitsController {
 
         header.getChildren().addAll(titleBox, spacer, statusBadge, editButton);
 
-        // Limit values line
+        // === Content section ===
+        VBox content = new VBox(16);
+        content.getStyleClass().add("limit-card-content");
+
+        // Progress subsection
+        VBox progressSection = new VBox(8);
+
         HBox valuesLine = new HBox(8);
         valuesLine.setAlignment(Pos.CENTER_LEFT);
 
@@ -157,7 +170,6 @@ public class PlansLimitsController {
 
         valuesLine.getChildren().addAll(usedLimitLabel, valuesSpacer, percentLabel);
 
-        // Progress
         ProgressBar progressBar = new ProgressBar(limit.getProgressValue());
         progressBar.getStyleClass().add("limit-progress");
         if (limit.isExceeded()) {
@@ -169,11 +181,15 @@ public class PlansLimitsController {
         }
         progressBar.setMaxWidth(Double.MAX_VALUE);
 
-        // Bottom metrics
-        HBox metricsRow = new HBox(30);
+        progressSection.getChildren().addAll(valuesLine, progressBar);
+
+        // Metrics with separator
+        HBox metricsRow = new HBox();
         metricsRow.setAlignment(Pos.CENTER_LEFT);
+        metricsRow.getStyleClass().add("limit-metrics-separator");
 
         VBox spentBox = new VBox(4);
+        HBox.setHgrow(spentBox, Priority.ALWAYS);
         Label spentCaption = new Label("Потрачено");
         spentCaption.getStyleClass().add("limit-metric-caption");
         Label spentValue = new Label(formatCurrency(limit.getSpent()));
@@ -181,6 +197,7 @@ public class PlansLimitsController {
         spentBox.getChildren().addAll(spentCaption, spentValue);
 
         VBox remainingBox = new VBox(4);
+        HBox.setHgrow(remainingBox, Priority.ALWAYS);
         Label remainingCaption = new Label("Осталось");
         remainingCaption.getStyleClass().add("limit-metric-caption");
         Label remainingValue = new Label(formatCurrency(limit.getRemaining()));
@@ -190,21 +207,26 @@ public class PlansLimitsController {
 
         metricsRow.getChildren().addAll(spentBox, remainingBox);
 
-        // Footer hint
-        Label hintLabel = new Label();
-        hintLabel.getStyleClass().add("limit-hint");
-        hintLabel.setMaxWidth(Double.MAX_VALUE);
-        VBox.setMargin(hintLabel, new Insets(2, 0, 0, 0));
+        content.getChildren().addAll(progressSection, metricsRow);
 
-        if (limit.getRemaining() >= 0) {
-            hintLabel.setText("Осталось только " + formatCurrency(limit.getRemaining()) + " до лимита");
-            hintLabel.getStyleClass().add("limit-hint-warning");
-        } else {
-            hintLabel.setText("Лимит превышен на " + formatCurrency(Math.abs(limit.getRemaining())));
-            hintLabel.getStyleClass().add("limit-hint-danger");
+        // Footer hint (only for warning/exceeded)
+        if (limit.isExceeded() || limit.isNearLimit()) {
+            Label hintLabel = new Label();
+            hintLabel.getStyleClass().add("limit-hint");
+            hintLabel.setMaxWidth(Double.MAX_VALUE);
+
+            if (limit.getRemaining() >= 0) {
+                hintLabel.setText("Осталось только " + formatCurrency(limit.getRemaining()) + " до лимита");
+                hintLabel.getStyleClass().add("limit-hint-warning");
+            } else {
+                hintLabel.setText("Лимит превышен на " + formatCurrency(Math.abs(limit.getRemaining())));
+                hintLabel.getStyleClass().add("limit-hint-danger");
+            }
+
+            content.getChildren().add(hintLabel);
         }
 
-        card.getChildren().addAll(header, valuesLine, progressBar, metricsRow, hintLabel);
+        card.getChildren().addAll(header, content);
         return card;
     }
 

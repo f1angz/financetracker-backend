@@ -216,49 +216,64 @@
             
             <!-- Основной контент с прокруткой -->
             <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
-                <VBox spacing="30">
-                    
-                    <!-- Заголовок -->
-                    <VBox spacing="5">
-                        <Label text="Категории" styleClass="page-title"/>
-                        <Label text="Управление категориями доходов и расходов" styleClass="page-subtitle"/>
-                    </VBox>
-                    
-                    <!-- Кнопка добавить категорию -->
-                    <HBox alignment="CENTER_RIGHT">
-                        <Button text="+ Добавить категорию" styleClass="primary-button" 
-                               onAction="#handleAddCategory"/>
+                <VBox spacing="32">
+
+                    <!-- Заголовок + кнопка на одной строке -->
+                    <HBox alignment="CENTER_LEFT" spacing="20">
+                        <VBox spacing="8">
+                            <Label text="Категории" styleClass="categories-page-title"/>
+                            <Label text="Управление категориями доходов и расходов" styleClass="categories-page-subtitle"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button styleClass="primary-button"
+                                onAction="#handleAddCategory">
+                            <graphic>
+                                <HBox spacing="8" alignment="CENTER">
+                                    <FontAwesomeIconView glyphName="PLUS" size="12" fill="white"/>
+                                    <Label text="Добавить категорию" style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+                                </HBox>
+                            </graphic>
+                        </Button>
                     </HBox>
-                    
+
                     <!-- Категории расходов -->
-                    <VBox spacing="15">
-                        <Label text="Категории расходов" styleClass="section-title"/>
-                        
-                        <GridPane fx:id="expenseCategoriesGrid" styleClass="categories-grid" 
-                                 hgap="20" vgap="20">
+                    <VBox spacing="16">
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="Категории расходов" styleClass="section-title"/>
+                            <Label fx:id="expenseBadge" styleClass="section-badge"/>
+                        </HBox>
+
+                        <GridPane fx:id="expenseCategoriesGrid" styleClass="categories-grid"
+                                 hgap="16" vgap="16">
                         </GridPane>
                     </VBox>
-                    
+
                     <!-- Категории доходов -->
-                    <VBox spacing="15">
-                        <Label text="Категории доходов" styleClass="section-title"/>
-                        
-                        <GridPane fx:id="incomeCategoriesGrid" styleClass="categories-grid" 
-                                 hgap="20" vgap="20">
+                    <VBox spacing="16">
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="Категории доходов" styleClass="section-title"/>
+                            <Label fx:id="incomeBadge" styleClass="section-badge"/>
+                        </HBox>
+
+                        <GridPane fx:id="incomeCategoriesGrid" styleClass="categories-grid"
+                                 hgap="16" vgap="16">
                         </GridPane>
                     </VBox>
-                    
+
                     <!-- Универсальные категории -->
-                    <VBox spacing="15">
-                        <Label text="Универсальные категории" styleClass="section-title"/>
-                        
-                        <GridPane fx:id="universalCategoriesGrid" styleClass="categories-grid" 
-                                 hgap="20" vgap="20">
+                    <VBox spacing="16">
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="Универсальные категории" styleClass="section-title"/>
+                            <Label fx:id="universalBadge" styleClass="section-badge"/>
+                        </HBox>
+
+                        <GridPane fx:id="universalCategoriesGrid" styleClass="categories-grid"
+                                 hgap="16" vgap="16">
                         </GridPane>
                     </VBox>
-                    
+
                     <VBox.margin>
-                        <Insets top="30" right="30" bottom="30" left="30"/>
+                        <Insets top="32" right="32" bottom="32" left="32"/>
                     </VBox.margin>
                 </VBox>
             </ScrollPane>

@@ -16,6 +16,8 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
+import javafx.scene.layout.ColumnConstraints;
+
 /**
  * Контроллер для экрана категорий
  */
@@ -32,6 +34,11 @@ public class CategoriesController {
     @FXML private GridPane expenseCategoriesGrid;
     @FXML private GridPane incomeCategoriesGrid;
     @FXML private GridPane universalCategoriesGrid;
+
+    // Section badges
+    @FXML private Label expenseBadge;
+    @FXML private Label incomeBadge;
+    @FXML private Label universalBadge;
     
     // Menu items
     @FXML private Button dashboardMenuItem;
@@ -75,18 +82,41 @@ public class CategoriesController {
     private void loadCategories() {
         // Очистка grid
         expenseCategoriesGrid.getChildren().clear();
+        expenseCategoriesGrid.getColumnConstraints().clear();
         incomeCategoriesGrid.getChildren().clear();
+        incomeCategoriesGrid.getColumnConstraints().clear();
         universalCategoriesGrid.getChildren().clear();
-        
+        universalCategoriesGrid.getColumnConstraints().clear();
+
         // Получение категорий по типам
         List<Category> expenseCategories = categoriesService.getCategoriesByType(Category.CategoryType.EXPENSE);
         List<Category> incomeCategories = categoriesService.getCategoriesByType(Category.CategoryType.INCOME);
         List<Category> universalCategories = categoriesService.getCategoriesByType(Category.CategoryType.UNIVERSAL);
-        
+
+        // Установка бейджей
+        expenseBadge.setText(String.valueOf(expenseCategories.size()));
+        incomeBadge.setText(String.valueOf(incomeCategories.size()));
+        universalBadge.setText(String.valueOf(universalCategories.size()));
+
+        // Настройка колонок (4 равные колонки)
+        setupGridColumns(expenseCategoriesGrid);
+        setupGridColumns(incomeCategoriesGrid);
+        setupGridColumns(universalCategoriesGrid);
+
         // Заполнение grid (4 колонки)
         fillCategoriesGrid(expenseCategoriesGrid, expenseCategories);
         fillCategoriesGrid(incomeCategoriesGrid, incomeCategories);
         fillCategoriesGrid(universalCategoriesGrid, universalCategories);
+    }
+
+    private void setupGridColumns(GridPane grid) {
+        for (int i = 0; i < 4; i++) {
+            ColumnConstraints cc = new ColumnConstraints();
+            cc.setPercentWidth(25);
+            cc.setHgrow(Priority.ALWAYS);
+            cc.setFillWidth(true);
+            grid.getColumnConstraints().add(cc);
+        }
     }
     
     /**
@@ -116,46 +146,75 @@ public class CategoriesController {
      * Создание карточки категории
      */
     private VBox createCategoryCard(Category category) {
-        VBox card = new VBox(12);
+        VBox card = new VBox(0);
         card.getStyleClass().add("category-card");
         card.setAlignment(Pos.TOP_LEFT);
-        card.setPrefWidth(200);
         card.setMaxWidth(Double.MAX_VALUE);
-        
+
         // Иконка категории
         StackPane iconContainer = new StackPane();
         iconContainer.setPrefSize(48, 48);
+        iconContainer.setMinSize(48, 48);
+        iconContainer.setMaxSize(48, 48);
         iconContainer.setStyle(
-            "-fx-background-color: " + category.getColor() + "20; " +
-            "-fx-background-radius: 12px;"
+            "-fx-background-color: " + category.getColor() + "14; " +
+            "-fx-background-radius: 14px;"
         );
-        
+
         FontAwesomeIconView icon = new FontAwesomeIconView(
             FontAwesomeIcon.valueOf(category.getIcon())
         );
         icon.setSize("24");
         icon.setFill(Color.web(category.getColor()));
-        
+
         iconContainer.getChildren().add(icon);
-        
+
         // Название категории
         Label nameLabel = new Label(category.getName());
         nameLabel.getStyleClass().add("category-name");
-        
+        VBox.setMargin(nameLabel, new Insets(16, 0, 0, 0));
+
         // Количество операций
         Label countLabel = new Label(category.getOperationsCount() + " операций");
         countLabel.getStyleClass().add("category-count");
-        
-        // Сумма
+        VBox.setMargin(countLabel, new Insets(4, 0, 0, 0));
+
+        // Секция суммы с разделителем
+        String totalText;
+        switch (category.getType()) {
+            case INCOME:
+                totalText = "Всего получено";
+                break;
+            case UNIVERSAL:
+                totalText = "Общая сумма";
+                break;
+            default:
+                totalText = "Всего потрачено";
+                break;
+        }
+
+        VBox amountSection = new VBox(4);
+        amountSection.setStyle(
+            "-fx-border-color: #F3F4F6; " +
+            "-fx-border-width: 1 0 0 0; " +
+            "-fx-padding: 13 0 0 0;"
+        );
+        VBox.setMargin(amountSection, new Insets(12, 0, 0, 0));
+
+        Label totalLabel = new Label(totalText);
+        totalLabel.getStyleClass().add("category-total-label");
+
         Label amountLabel = new Label(formatCurrency(category.getTotalAmount()));
         amountLabel.getStyleClass().add("category-amount");
-        
+
+        amountSection.getChildren().addAll(totalLabel, amountLabel);
+
         // Сборка карточки
-        card.getChildren().addAll(iconContainer, nameLabel, countLabel, amountLabel);
-        
+        card.getChildren().addAll(iconContainer, nameLabel, countLabel, amountSection);
+
         // Клик на карточку
         card.setOnMouseClicked(event -> handleCategoryClick(category));
-        
+
         return card;
     }
     
