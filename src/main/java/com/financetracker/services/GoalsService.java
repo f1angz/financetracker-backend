@@ -1,5 +1,6 @@
 package com.financetracker.services;
 
+import com.financetracker.models.Debt;
 import com.financetracker.models.Goal;
 
 import java.time.LocalDate;
@@ -14,10 +15,13 @@ public class GoalsService {
 
     private static GoalsService instance;
     private final List<Goal> goals;
+    private final List<Debt> debts;
 
     private GoalsService() {
         this.goals = new ArrayList<>();
+        this.debts = new ArrayList<>();
         initializeMockGoals();
+        initializeMockDebts();
     }
 
     public static synchronized GoalsService getInstance() {
@@ -53,7 +57,34 @@ public class GoalsService {
         ));
     }
 
+    private void initializeMockDebts() {
+        debts.add(new Debt(
+            "d1", Debt.DebtType.BORROWED, "Алексей Сидоров", 25000,
+            LocalDate.of(2025, 12, 15), LocalDate.of(2026, 3, 15),
+            Debt.DebtStatus.ACTIVE, "Займ на ремонт"
+        ));
+        debts.add(new Debt(
+            "d2", Debt.DebtType.LENT, "Мария Козлова", 15000,
+            LocalDate.of(2026, 1, 10), LocalDate.of(2026, 2, 10),
+            Debt.DebtStatus.ACTIVE, "Помощь с переездом"
+        ));
+        debts.add(new Debt(
+            "d3", Debt.DebtType.BORROWED, "Дмитрий Волков", 10000,
+            LocalDate.of(2025, 10, 1), LocalDate.of(2025, 12, 31),
+            Debt.DebtStatus.PAID, "Займ на учёбу"
+        ));
+        debts.add(new Debt(
+            "d4", Debt.DebtType.LENT, "Елена Новикова", 5000,
+            LocalDate.of(2025, 11, 20), LocalDate.of(2026, 1, 20),
+            Debt.DebtStatus.PAID, "Помощь с покупкой"
+        ));
+    }
+
     public List<Goal> getAllGoals() {
         return new ArrayList<>(goals);
+    }
+
+    public List<Debt> getAllDebts() {
+        return new ArrayList<>(debts);
     }
 }

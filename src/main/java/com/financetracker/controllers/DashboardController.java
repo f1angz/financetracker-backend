@@ -4,20 +4,17 @@ import com.financetracker.models.User;
 import com.financetracker.services.AuthService;
 import com.financetracker.services.DashboardService;
 import com.financetracker.utils.SceneManager;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.text.NumberFormat;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Контроллер для главного экрана Dashboard
@@ -44,6 +41,10 @@ DashboardController {
     @FXML private BarChart<String, Number> monthlyBarChart;
     @FXML private CategoryAxis xAxis;
     @FXML private NumberAxis yAxis;
+
+    // Bottom section
+    @FXML private VBox topCategoriesContainer;
+    @FXML private VBox recentOperationsContainer;
     
     // Menu items
     @FXML private Button dashboardMenuItem;
@@ -72,6 +73,8 @@ DashboardController {
         loadStatistics();
         setupCategoryPieChart();
         setupMonthlyBarChart();
+        setupTopCategories();
+        setupRecentOperations();
     }
     
     /**
@@ -233,6 +236,149 @@ DashboardController {
         return String.format("₽ %,.0f", amount);
     }
     
+    /**
+     * Настройка блока "Топ категорий расходов"
+     */
+    private void setupTopCategories() {
+        topCategoriesContainer.getChildren().clear();
+
+        List<Map<String, Object>> topCategories = new ArrayList<>();
+        topCategories.add(Map.of("name", "Продукты", "amount", 18500.0, "percent", 24.7, "trend", "up"));
+        topCategories.add(Map.of("name", "Здоровье", "amount", 15200.0, "percent", 20.3, "trend", "down"));
+        topCategories.add(Map.of("name", "Транспорт", "amount", 12300.0, "percent", 16.4, "trend", "up"));
+        topCategories.add(Map.of("name", "Прочее", "amount", 12070.0, "percent", 16.1, "trend", "same"));
+        topCategories.add(Map.of("name", "Развлечения", "amount", 8900.0, "percent", 11.9, "trend", "up"));
+
+        for (int i = 0; i < topCategories.size(); i++) {
+            Map<String, Object> cat = topCategories.get(i);
+            HBox row = new HBox(12);
+            row.setAlignment(Pos.CENTER_LEFT);
+
+            // Rank number
+            StackPane rankPane = new StackPane();
+            rankPane.getStyleClass().add("top-category-rank");
+            Label rankLabel = new Label(String.valueOf(i + 1));
+            rankLabel.getStyleClass().add("top-category-rank-text");
+            rankPane.getChildren().add(rankLabel);
+
+            // Content
+            VBox contentBox = new VBox(4);
+            HBox.setHgrow(contentBox, Priority.ALWAYS);
+
+            HBox nameAmountRow = new HBox();
+            nameAmountRow.setAlignment(Pos.CENTER_LEFT);
+            Label nameLabel = new Label((String) cat.get("name"));
+            nameLabel.getStyleClass().add("top-category-name");
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+            Label amountLabel = new Label(formatCurrency((Double) cat.get("amount")));
+            amountLabel.getStyleClass().add("top-category-amount");
+            nameAmountRow.getChildren().addAll(nameLabel, spacer, amountLabel);
+
+            HBox progressRow = new HBox(8);
+            progressRow.setAlignment(Pos.CENTER_LEFT);
+            StackPane progressTrack = new StackPane();
+            progressTrack.getStyleClass().add("top-category-progress-track");
+            HBox.setHgrow(progressTrack, Priority.ALWAYS);
+            Region progressBar = new Region();
+            progressBar.getStyleClass().add("top-category-progress-bar");
+            double percent = (Double) cat.get("percent");
+            progressBar.maxWidthProperty().bind(progressTrack.widthProperty().multiply(percent / 100.0));
+            progressTrack.getChildren().add(progressBar);
+            StackPane.setAlignment(progressBar, Pos.CENTER_LEFT);
+            Label percentLabel = new Label(String.format("%.1f%%", percent));
+            percentLabel.getStyleClass().add("top-category-percent");
+
+            progressRow.getChildren().addAll(progressTrack, percentLabel);
+            contentBox.getChildren().addAll(nameAmountRow, progressRow);
+
+            // Trend arrow
+            String trend = (String) cat.get("trend");
+            if ("up".equals(trend)) {
+                FontAwesomeIconView arrow = new FontAwesomeIconView();
+                arrow.setGlyphName("ARROW_UP");
+                arrow.setSize("14");
+                arrow.setStyle("-fx-fill: #EF4444;");
+                row.getChildren().addAll(rankPane, contentBox, arrow);
+            } else if ("down".equals(trend)) {
+                FontAwesomeIconView arrow = new FontAwesomeIconView();
+                arrow.setGlyphName("ARROW_DOWN");
+                arrow.setSize("14");
+                arrow.setStyle("-fx-fill: #10B981;");
+                row.getChildren().addAll(rankPane, contentBox, arrow);
+            } else {
+                row.getChildren().addAll(rankPane, contentBox);
+            }
+
+            topCategoriesContainer.getChildren().add(row);
+        }
+    }
+
+    /**
+     * Настройка блока "Последние операции"
+     */
+    private void setupRecentOperations() {
+        recentOperationsContainer.getChildren().clear();
+
+        List<Map<String, Object>> operations = new ArrayList<>();
+        operations.add(Map.of("type", "expense", "category", "Продукты", "amount", 3450.0, "date", "2026-02-04", "time", "14:30", "comment", "Супермаркет Пятёрочка"));
+        operations.add(Map.of("type", "income", "category", "Зарплата", "amount", 85000.0, "date", "2026-02-03", "time", "09:00", "comment", "Ежемесячная зарплата"));
+        operations.add(Map.of("type", "expense", "category", "Транспорт", "amount", 1200.0, "date", "2026-02-03", "time", "08:15", "comment", "Заправка автомобиля"));
+        operations.add(Map.of("type", "expense", "category", "Развлечения", "amount", 2800.0, "date", "2026-02-02", "time", "19:45", "comment", "Кино с семьёй"));
+        operations.add(Map.of("type", "income", "category", "Фриланс", "amount", 15000.0, "date", "2026-02-01", "time", "16:20", "comment", "Проект веб-дизайна"));
+        operations.add(Map.of("type", "expense", "category", "Здоровье", "amount", 4500.0, "date", "2026-02-01", "time", "11:00", "comment", "Стоматолог"));
+
+        for (Map<String, Object> op : operations) {
+            HBox row = new HBox(12);
+            row.setAlignment(Pos.CENTER_LEFT);
+            row.getStyleClass().add("recent-op-row");
+            row.setPadding(new Insets(10, 12, 10, 12));
+
+            // Type icon
+            String type = (String) op.get("type");
+            boolean isIncome = "income".equals(type);
+            StackPane iconPane = new StackPane();
+            iconPane.getStyleClass().add(isIncome ? "recent-op-icon-income" : "recent-op-icon-expense");
+            FontAwesomeIconView arrow = new FontAwesomeIconView();
+            arrow.setGlyphName(isIncome ? "ARROW_UP" : "ARROW_DOWN");
+            arrow.setSize("16");
+            arrow.setStyle("-fx-fill: " + (isIncome ? "#10B981" : "#EF4444") + ";");
+            iconPane.getChildren().add(arrow);
+
+            // Content
+            VBox contentBox = new VBox(2);
+            HBox.setHgrow(contentBox, Priority.ALWAYS);
+
+            HBox catAmountRow = new HBox();
+            catAmountRow.setAlignment(Pos.CENTER_LEFT);
+            Label catLabel = new Label((String) op.get("category"));
+            catLabel.getStyleClass().add("recent-op-category");
+            Region spacer = new Region();
+            HBox.setHgrow(spacer, Priority.ALWAYS);
+            double amount = (Double) op.get("amount");
+            Label amountLabel = new Label((isIncome ? "+" : "-") + formatCurrency(amount));
+            amountLabel.getStyleClass().add(isIncome ? "recent-op-amount-income" : "recent-op-amount-expense");
+            catAmountRow.getChildren().addAll(catLabel, spacer, amountLabel);
+
+            Label commentLabel = new Label((String) op.get("comment"));
+            commentLabel.getStyleClass().add("recent-op-comment");
+
+            contentBox.getChildren().addAll(catAmountRow, commentLabel);
+
+            // Date/time
+            VBox dateBox = new VBox(2);
+            dateBox.setAlignment(Pos.CENTER_RIGHT);
+            Label dateLabel = new Label((String) op.get("date"));
+            dateLabel.getStyleClass().add("recent-op-date");
+            Label timeLabel = new Label((String) op.get("time"));
+            timeLabel.getStyleClass().add("recent-op-time");
+            dateBox.getChildren().addAll(dateLabel, timeLabel);
+
+            row.getChildren().addAll(iconPane, contentBox, dateBox);
+            recentOperationsContainer.getChildren().add(row);
+        }
+    }
+
     /**
      * Форматирование валюты (короткое)
      */

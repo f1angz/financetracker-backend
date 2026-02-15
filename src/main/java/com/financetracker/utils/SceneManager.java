@@ -23,7 +23,7 @@ public class SceneManager {
 
         // создаём одну сцену
         Parent root = loadRoot("login");
-        mainScene = new Scene(root);
+        mainScene = new Scene(root, 1920, 1080);
 
         String cssPath = SceneManager.class
                 .getResource("/css/styles.css")

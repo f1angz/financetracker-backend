@@ -129,15 +129,19 @@
 
     <center>
         <VBox styleClass="main-content" spacing="0">
-            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
-                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20" prefHeight="64">
+                <padding>
+                    <Insets top="20" right="32" bottom="20" left="32"/>
+                </padding>
+
+                <HBox styleClass="search-box" alignment="CENTER_LEFT" spacing="10" prefWidth="570" maxWidth="570">
                     <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon"/>
-                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="searchField" promptText="Поиск операций, категорий..." styleClass="search-field" prefWidth="190"/>
                 </HBox>
 
                 <Region HBox.hgrow="ALWAYS"/>
 
-                <Button text="+   Добавить операцию" styleClass="primary-button" onAction="#handleAddOperation"/>
+                <Button text="+ Добавить операцию" styleClass="primary-button" onAction="#handleAddOperation"/>
 
                 <Button styleClass="icon-button" onAction="#handleNotifications">
                     <graphic>
@@ -153,10 +157,6 @@
                         <FontAwesomeIconView glyphName="USER" size="18" styleClass="icon-button-icon"/>
                     </graphic>
                 </Button>
-
-                <HBox.margin>
-                    <Insets top="20" right="30" bottom="20" left="30"/>
-                </HBox.margin>
             </HBox>
 
             <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
@@ -173,7 +173,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="14">
                                 <FontAwesomeIconView glyphName="SUN_O" size="18" styleClass="settings-leading-icon"/>
                                 <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                    <Label text="Тёмная тема" styleClass="settings-item-title"/>
+                                    <Label text="Тёмная тема" styleClass="settings-item-title" style="-fx-font-size: 16px;"/>
                                     <Label text="Переключение между светлой и тёмной темой" styleClass="settings-item-subtitle"/>
                                 </VBox>
                                 <CheckBox fx:id="darkThemeToggle" styleClass="settings-switch"/>
@@ -195,18 +195,18 @@
 
                             <HBox alignment="CENTER_LEFT" spacing="14">
                                 <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                    <Label text="Уведомления" styleClass="settings-item-title"/>
+                                    <Label text="Уведомления" styleClass="settings-item-title" style="-fx-font-size: 16px;"/>
                                     <Label text="Получать уведомления о лимитах и целях" styleClass="settings-item-subtitle"/>
                                 </VBox>
                                 <CheckBox fx:id="notificationsToggle" styleClass="settings-switch settings-switch-dark"/>
                             </HBox>
                         </VBox>
 
-                        <VBox styleClass="settings-card settings-profile-card" spacing="14" prefWidth="360">
+                        <VBox styleClass="settings-card settings-profile-card" spacing="16" prefWidth="432" minWidth="360" maxWidth="432">
                             <Label text="Профиль" styleClass="settings-section-title"/>
 
                             <VBox spacing="10" alignment="CENTER">
-                                <StackPane styleClass="settings-profile-avatar">
+                                <StackPane styleClass="settings-profile-avatar" maxWidth="80" maxHeight="80" minWidth="80" minHeight="80">
                                     <Label fx:id="profileInitialsLabel" text="ИП" styleClass="settings-profile-initials"/>
                                 </StackPane>
                                 <Label fx:id="profileNameLabel" text="Иван Петров" styleClass="settings-profile-name"/>
@@ -215,19 +215,19 @@
 
                             <Separator/>
 
-                            <Button text="   Редактировать профиль" styleClass="settings-profile-action" onAction="#handleEditProfile">
+                            <Button text="   Редактировать профиль" styleClass="settings-profile-action" onAction="#handleEditProfile" maxWidth="Infinity">
                                 <graphic>
                                     <FontAwesomeIconView glyphName="USER" size="13" styleClass="settings-profile-action-icon"/>
                                 </graphic>
                             </Button>
 
-                            <Button text="   Сменить пароль" styleClass="settings-profile-action" onAction="#handleChangePassword">
+                            <Button text="   Сменить пароль" styleClass="settings-profile-action" onAction="#handleChangePassword" maxWidth="Infinity">
                                 <graphic>
                                     <FontAwesomeIconView glyphName="LOCK" size="13" styleClass="settings-profile-action-icon"/>
                                 </graphic>
                             </Button>
 
-                            <Button text="   Выйти" styleClass="settings-profile-action settings-logout-button" onAction="#handleLogoutAction">
+                            <Button text="   Выйти" styleClass="settings-profile-action settings-logout-button" onAction="#handleLogoutAction" maxWidth="Infinity">
                                 <graphic>
                                     <FontAwesomeIconView glyphName="SIGN_OUT" size="13" styleClass="settings-logout-icon"/>
                                 </graphic>
@@ -259,33 +259,51 @@
                         </HBox>
                     </VBox>
 
-                    <VBox styleClass="settings-card" spacing="14">
+                    <VBox spacing="14">
                         <Label text="Управление данными" styleClass="settings-section-title"/>
 
-                        <HBox alignment="CENTER_LEFT" spacing="14">
-                            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                <Label text="Экспорт данных" styleClass="settings-item-title"/>
-                                <Label text="Скачать все данные в формате CSV" styleClass="settings-item-subtitle"/>
+                        <HBox spacing="16">
+                            <VBox styleClass="settings-card" spacing="14" HBox.hgrow="ALWAYS">
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <StackPane styleClass="data-icon data-icon-export">
+                                        <FontAwesomeIconView glyphName="DOWNLOAD" size="16" styleClass="data-icon-glyph-export"/>
+                                    </StackPane>
+                                    <VBox spacing="4">
+                                        <Label text="Экспорт данных" styleClass="settings-item-title" style="-fx-font-weight: 700;"/>
+                                        <Label text="Скачать все данные в CSV" styleClass="settings-item-subtitle"/>
+                                    </VBox>
+                                </HBox>
+                                <Button text="   Экспортировать" styleClass="data-action-button" onAction="#handleExportData" maxWidth="Infinity">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="DOWNLOAD" size="13" styleClass="data-action-icon-export"/>
+                                    </graphic>
+                                </Button>
                             </VBox>
-                            <Button text="Экспортировать" styleClass="primary-button" onAction="#handleExportData"/>
-                        </HBox>
 
-                        <Separator/>
-
-                        <HBox alignment="CENTER_LEFT" spacing="14">
-                            <VBox spacing="4" HBox.hgrow="ALWAYS">
-                                <Label text="Импорт данных" styleClass="settings-item-title"/>
-                                <Label text="Загрузить данные из файла CSV" styleClass="settings-item-subtitle"/>
+                            <VBox styleClass="settings-card" spacing="14" HBox.hgrow="ALWAYS">
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <StackPane styleClass="data-icon data-icon-import">
+                                        <FontAwesomeIconView glyphName="UPLOAD" size="16" styleClass="data-icon-glyph-import"/>
+                                    </StackPane>
+                                    <VBox spacing="4">
+                                        <Label text="Импорт данных" styleClass="settings-item-title" style="-fx-font-weight: 700;"/>
+                                        <Label text="Загрузить данные из CSV" styleClass="settings-item-subtitle"/>
+                                    </VBox>
+                                </HBox>
+                                <Button text="   Импортировать" styleClass="data-action-button" onAction="#handleImportData" maxWidth="Infinity">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="UPLOAD" size="13" styleClass="data-action-icon-import"/>
+                                    </graphic>
+                                </Button>
                             </VBox>
-                            <Button text="Импортировать" styleClass="primary-button" onAction="#handleImportData"/>
                         </HBox>
                     </VBox>
 
                     <VBox styleClass="danger-zone-card" spacing="14">
                         <Label text="Опасная зона" styleClass="danger-zone-title"/>
-                        <Label text="Удаление аккаунта приведёт к безвозвратной потере всех данных. Это действие нельзя отменить." styleClass="danger-zone-text" wrapText="true"/>
-                        <HBox alignment="CENTER_RIGHT">
-                            <Button text="Удалить аккаунт" styleClass="danger-button" onAction="#handleDeleteAccount"/>
+                        <Label text="Удаление аккаунта необратимо. Все ваши данные будут безвозвратно удалены." styleClass="danger-zone-text" wrapText="true"/>
+                        <HBox alignment="CENTER_LEFT">
+                            <Button text="Удалить аккаунт" styleClass="danger-button-outlined" onAction="#handleDeleteAccount"/>
                         </HBox>
                     </VBox>
                 </VBox>

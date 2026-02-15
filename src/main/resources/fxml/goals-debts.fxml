@@ -180,18 +180,63 @@
 
             <ScrollPane styleClass="content-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
                 <VBox spacing="24">
-                    <HBox alignment="CENTER_LEFT">
-                        <Label text="Цели" styleClass="goals-page-title"/>
-                        <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="+ Добавить цель" styleClass="primary-button" onAction="#handleAddGoal"/>
-                    </HBox>
+                    <!-- Page title -->
+                    <VBox spacing="8">
+                        <Label text="Цели и долги" styleClass="goals-page-title"/>
+                        <Label text="Накопления и управление долговыми обязательствами" styleClass="goals-page-subtitle"/>
+                    </VBox>
 
-                    <GridPane fx:id="goalsGrid" hgap="24" vgap="24">
-                        <columnConstraints>
-                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
-                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
-                        </columnConstraints>
-                    </GridPane>
+                    <!-- TabPane -->
+                    <TabPane fx:id="goalsTabPane" styleClass="goals-tab-pane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+                        <!-- Tab: Goals -->
+                        <Tab text="Цели накоплений">
+                            <VBox spacing="24">
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Button text="+ Добавить цель" styleClass="primary-button" onAction="#handleAddGoal"/>
+                                </HBox>
+                                <GridPane fx:id="goalsGrid" hgap="24" vgap="24">
+                                    <columnConstraints>
+                                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                        <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                    </columnConstraints>
+                                </GridPane>
+                                <padding>
+                                    <Insets bottom="16"/>
+                                </padding>
+                            </VBox>
+                        </Tab>
+
+                        <!-- Tab: Debts -->
+                        <Tab text="Долги">
+                            <VBox spacing="24">
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Button text="+ Добавить долг" styleClass="primary-button" onAction="#handleAddDebt"/>
+                                </HBox>
+
+                                <!-- Active debts -->
+                                <VBox spacing="16">
+                                    <Label text="Активные долги" styleClass="debts-section-title"/>
+                                    <GridPane fx:id="activeDebtsGrid" hgap="24" vgap="24">
+                                        <columnConstraints>
+                                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                            <ColumnConstraints percentWidth="50" hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                    </GridPane>
+                                </VBox>
+
+                                <!-- Paid debts -->
+                                <VBox spacing="16">
+                                    <Label text="Погашенные долги" styleClass="debts-section-title"/>
+                                    <VBox fx:id="paidDebtsContainer" spacing="10"/>
+                                </VBox>
+                                <padding>
+                                    <Insets bottom="16"/>
+                                </padding>
+                            </VBox>
+                        </Tab>
+
+                    </TabPane>
                 </VBox>
                 <padding>
                     <Insets top="32" right="32" bottom="32" left="32"/>

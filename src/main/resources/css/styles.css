@@ -1255,21 +1255,28 @@
 .settings-card {
     -fx-background-color: white;
     -fx-background-radius: 14px;
-    -fx-border-color: #E5E7EB;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
     -fx-border-radius: 14px;
-    -fx-padding: 22px;
+    -fx-border-width: 1px;
+    -fx-padding: 24px;
+}
+
+.settings-card .separator .line {
+    -fx-border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
 }
 
 .settings-section-title {
     -fx-font-size: 16px;
-    -fx-font-weight: 700;
-    -fx-text-fill: -text-primary;
+    -fx-font-weight: 400;
+    -fx-text-fill: #0A0A0A;
 }
 
 .settings-item-title {
-    -fx-font-size: 16px;
-    -fx-font-weight: 500;
-    -fx-text-fill: -text-primary;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #0A0A0A;
 }
 
 .settings-item-subtitle {
@@ -1334,14 +1341,19 @@
 }
 
 .settings-profile-card {
-    -fx-min-width: 320px;
+    -fx-min-width: 360px;
+    -fx-max-width: 432px;
 }
 
 .settings-profile-avatar {
     -fx-pref-width: 80px;
     -fx-pref-height: 80px;
-    -fx-background-color: linear-gradient(to right, #2563EB, #3B82F6);
-    -fx-background-radius: 36px;
+    -fx-min-width: 80px;
+    -fx-min-height: 80px;
+    -fx-max-width: 80px;
+    -fx-max-height: 80px;
+    -fx-background-color: #155DFC;
+    -fx-background-radius: 40px;
 }
 
 .settings-profile-initials {
@@ -1362,31 +1374,63 @@
 }
 
 .settings-profile-action {
-    -fx-background-color: transparent;
-    -fx-border-color: #E5E7EB;
+    -fx-background-color: white;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
-    -fx-padding: 8px 10px;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-pref-height: 36px;
+    -fx-min-height: 36px;
+    -fx-padding: 0px 12px;
     -fx-font-size: 14px;
-    -fx-text-fill: -text-primary;
+    -fx-font-weight: 400;
+    -fx-text-fill: #0A0A0A;
     -fx-alignment: CENTER_LEFT;
     -fx-cursor: hand;
 }
 
+.settings-profile-action:focused {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
 .settings-profile-action:hover {
     -fx-background-color: #F9FAFB;
+    -fx-background-insets: 0;
+}
+
+.settings-profile-action:pressed {
+    -fx-background-color: #F3F4F6;
+    -fx-background-insets: 0;
 }
 
 .settings-profile-action-icon {
-    -fx-fill: -text-primary;
+    -fx-fill: #0A0A0A;
 }
 
 .settings-logout-button {
-    -fx-text-fill: #DC2626;
+    -fx-text-fill: #E7000B;
+    -fx-background-color: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.settings-logout-button:focused {
+    -fx-background-color: white;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.settings-logout-button:hover {
+    -fx-background-color: #FEF2F2;
+    -fx-background-insets: 0;
 }
 
 .settings-logout-icon {
-    -fx-fill: #DC2626;
+    -fx-fill: #E7000B;
 }
 
 .settings-input {
@@ -1395,6 +1439,58 @@
     -fx-border-radius: 8px;
     -fx-font-size: 14px;
     -fx-pref-height: 44px;
+}
+
+/* ===== DATA MANAGEMENT ICONS ===== */
+.data-icon {
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 50%;
+    -fx-alignment: center;
+}
+
+.data-icon-export {
+    -fx-background-color: #EFF6FF;
+}
+
+.data-icon-import {
+    -fx-background-color: #F0FDF4;
+}
+
+.data-icon-glyph-export {
+    -fx-fill: #3B82F6;
+}
+
+.data-icon-glyph-import {
+    -fx-fill: #10B981;
+}
+
+.data-action-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text-primary;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER;
+}
+
+.data-action-button:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.data-action-icon-export {
+    -fx-fill: -text-secondary;
+}
+
+.data-action-icon-import {
+    -fx-fill: -text-secondary;
 }
 
 /* ===== DANGER ZONE ===== */
@@ -1429,4 +1525,393 @@
 
 .danger-button:hover {
     -fx-background-color: #B91C1C;
+}
+
+.danger-button-outlined {
+    -fx-background-color: white;
+    -fx-border-color: #DC2626;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-text-fill: #DC2626;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.danger-button-outlined:hover {
+    -fx-background-color: #FEF2F2;
+}
+
+/* ========================================
+   TOP CATEGORIES (Dashboard)
+   ======================================== */
+
+.top-category-rank {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 32px;
+    -fx-pref-height: 32px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+    -fx-alignment: center;
+}
+
+.top-category-rank-text {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6B7280;
+}
+
+.top-category-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.top-category-amount {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.top-category-progress-track {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 4px;
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+}
+
+.top-category-progress-bar {
+    -fx-background-color: #3B82F6;
+    -fx-background-radius: 4px;
+    -fx-pref-height: 8px;
+    -fx-min-height: 8px;
+    -fx-max-height: 8px;
+}
+
+.top-category-percent {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+    -fx-min-width: 45px;
+}
+
+/* ========================================
+   RECENT OPERATIONS (Dashboard)
+   ======================================== */
+
+.recent-op-row {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+}
+
+.recent-op-row:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.recent-op-icon-income {
+    -fx-background-color: #F0FDF4;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-alignment: center;
+}
+
+.recent-op-icon-expense {
+    -fx-background-color: #FEF2F2;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-alignment: center;
+}
+
+.recent-op-category {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.recent-op-amount-income {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #10B981;
+}
+
+.recent-op-amount-expense {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #EF4444;
+}
+
+.recent-op-comment {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7280;
+}
+
+.recent-op-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7280;
+}
+
+.recent-op-time {
+    -fx-font-size: 12px;
+    -fx-text-fill: #9CA3AF;
+}
+
+/* ========================================
+   GOALS/DEBTS TABPANE
+   ======================================== */
+
+.goals-tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.goals-tab-pane > .tab-header-area {
+    -fx-padding: 0 0 16 0;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 24px;
+    -fx-cursor: hand;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #F3F4F6;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: #111827;
+    -fx-font-weight: 600;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab:selected:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+.goals-tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
+    -fx-background-color: transparent;
+    visibility: hidden;
+}
+
+.goals-tab-pane > .tab-content-area {
+    -fx-background-color: transparent;
+}
+
+.goals-page-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: -text-secondary;
+}
+
+/* ========================================
+   DEBTS
+   ======================================== */
+
+.debt-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14px;
+    -fx-border-color: rgba(0, 0, 0, 0.1);
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+    -fx-padding: 24px;
+}
+
+.debt-person-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.debt-description {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+.debt-avatar-borrowed {
+    -fx-background-color: #FEF2F2;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 44px;
+    -fx-min-width: 44px;
+    -fx-min-height: 44px;
+    -fx-max-width: 44px;
+    -fx-max-height: 44px;
+    -fx-alignment: center;
+}
+
+.debt-avatar-lent {
+    -fx-background-color: #F0FDF4;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 44px;
+    -fx-min-width: 44px;
+    -fx-min-height: 44px;
+    -fx-max-width: 44px;
+    -fx-max-height: 44px;
+    -fx-alignment: center;
+}
+
+.debt-type-badge-borrowed {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #DC2626;
+    -fx-background-color: #FEF2F2;
+    -fx-border-color: #FECACA;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 4px 10px;
+}
+
+.debt-type-badge-lent {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #16A34A;
+    -fx-background-color: #F0FDF4;
+    -fx-border-color: #BBF7D0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 4px 10px;
+}
+
+.debt-amount-borrowed {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #DC2626;
+}
+
+.debt-amount-lent {
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #16A34A;
+}
+
+.debt-date-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6B7280;
+}
+
+.debt-date-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.debt-status-active {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #D97706;
+    -fx-background-color: #FFFBEB;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 12px;
+}
+
+.debt-status-overdue {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #DC2626;
+    -fx-background-color: #FEF2F2;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 12px;
+}
+
+.debt-actions-row {
+    -fx-border-color: #F3F4F6 transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-padding: 12px 0 0 0;
+}
+
+.debt-action-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 13px;
+    -fx-text-fill: -text-primary;
+    -fx-cursor: hand;
+}
+
+.debt-action-button:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+.debt-pay-button {
+    -fx-background-color: #10B981;
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.debt-pay-button:hover {
+    -fx-background-color: #059669;
+}
+
+.debts-section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -text-primary;
+}
+
+.paid-debt-row {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: rgba(0, 0, 0, 0.06);
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 16px;
+}
+
+.paid-debt-person {
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -text-primary;
+}
+
+.paid-debt-amount {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6B7280;
+    -fx-strikethrough: true;
+}
+
+.paid-debt-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #9CA3AF;
+}
+
+.paid-debt-badge {
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #16A34A;
+    -fx-background-color: #F0FDF4;
+    -fx-border-color: #BBF7D0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 3px 8px;
 }

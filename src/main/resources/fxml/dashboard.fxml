@@ -321,10 +321,30 @@
                         </VBox>
                         
                     </HBox>
+
+                    <!-- Топ категорий + Последние операции -->
+                    <HBox spacing="20" alignment="TOP_CENTER">
+                        <padding>
+                            <Insets bottom="16" left="16" right="16"/>
+                        </padding>
+
+                        <!-- Топ категорий расходов -->
+                        <VBox styleClass="chart-card" spacing="15" prefWidth="400" minWidth="350">
+                            <Label text="Топ категорий расходов" styleClass="chart-title"/>
+                            <VBox fx:id="topCategoriesContainer" spacing="16"/>
+                        </VBox>
+
+                        <!-- Последние операции -->
+                        <VBox styleClass="chart-card" spacing="15" HBox.hgrow="ALWAYS">
+                            <Label text="Последние операции" styleClass="chart-title"/>
+                            <VBox fx:id="recentOperationsContainer" spacing="10"/>
+                        </VBox>
+                    </HBox>
+
                 </VBox>
             </ScrollPane>
-            
+
         </VBox>
     </center>
-    
+
 </BorderPane>
